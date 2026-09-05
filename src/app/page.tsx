@@ -279,7 +279,7 @@ export default async function HomePage() {
         <div style={{ display: "flex", alignItems: "flex-end", justifyContent: "space-between", marginBottom: "2rem" }}>
           <div>
             <span className="category-pill" style={{ backgroundColor: "#eff6ff", color: "#1d4ed8", marginBottom: "0.5rem" }}>
-              WHAT'S HAPPENING
+              WHAT&apos;S HAPPENING
             </span>
             <h2 style={{ fontSize: "2rem", fontWeight: 800, color: "var(--text-primary)", letterSpacing: "-0.02em" }}>
               Campus Announcements
