@@ -11,7 +11,10 @@ export function withErrorHandling<C extends RouteContext = RouteContext>(
   return async (req: NextRequest, ctx: RouteContext) => {
     try {
       return await fn(req, ctx as C);
-    } catch (err) {
+    } catch (err: any) {
+      if (err?.digest === "DYNAMIC_SERVER_USAGE") {
+        throw err;
+      }
       if (err instanceof AppError) {
         return fail(err.code, err.message, err.statusCode, err.details);
       }
