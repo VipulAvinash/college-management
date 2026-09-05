@@ -2,7 +2,7 @@ import "dotenv/config";
 import { drizzle } from "drizzle-orm/postgres-js";
 import { eq } from "drizzle-orm";
 import postgres from "postgres";
-import * as argon2 from "argon2";
+import { hashPassword } from "../lib/auth/password";
 import * as schema from "./schema";
 
 /**
@@ -24,7 +24,7 @@ async function main() {
     where: (u, { eq }) => eq(u.email, adminEmail)
   });
   if (!existingAdmin) {
-    const passwordHash = await argon2.hash("Admin@123", { type: argon2.argon2id });
+    const passwordHash = await hashPassword("Admin@123");
     await db.insert(schema.users).values({
       name: "System Administrator",
       email: adminEmail,
