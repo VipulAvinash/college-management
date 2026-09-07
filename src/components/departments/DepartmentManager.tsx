@@ -104,31 +104,31 @@ export function DepartmentManager() {
 
   const columns: Column<Department>[] = [
     {
-      header: "Department Name",
+      header: "Program Name & Description",
       render: (d) => (
         <div style={{ display: "flex", alignItems: "center", gap: "0.75rem" }}>
-          <div style={{ width: 36, height: 36, borderRadius: "var(--radius-md)", backgroundColor: "#eff6ff", color: "#2563eb", display: "flex", alignItems: "center", justifyContent: "center" }}>
-            <Building2 size={18} />
+          <div style={{ width: 38, height: 38, borderRadius: "50%", backgroundColor: "#fffbeb", color: "#d97706", display: "flex", alignItems: "center", justifyContent: "center", border: "1px solid #fde68a" }}>
+            <Building2 size={20} />
           </div>
           <div>
-            <div style={{ fontWeight: 700, color: "var(--text-primary)" }}>{d.name}</div>
-            <div style={{ fontSize: "0.75rem", color: "var(--text-muted)" }}>{d.description || "No description"}</div>
+            <div style={{ fontWeight: 800, color: "var(--text-primary)", fontFamily: "var(--font-display)" }}>{d.name}</div>
+            <div style={{ fontSize: "0.75rem", color: "var(--text-secondary)" }}>{d.description || "No description"}</div>
           </div>
         </div>
       )
     },
     {
-      header: "Branch Code",
-      render: (d) => <Badge variant="info">{d.code}</Badge>
+      header: "Program Code / Age Tag",
+      render: (d) => <Badge variant="warning">{d.code}</Badge>
     },
     {
       header: "Actions",
       render: (d) => (
         <div style={{ display: "flex", gap: "0.5rem" }}>
-          <button onClick={() => openEditModal(d)} className="btn btn-secondary btn-sm">
+          <button onClick={() => openEditModal(d)} className="btn btn-secondary btn-sm" title="Edit Program">
             <Edit2 size={14} /> Edit
           </button>
-          <button onClick={() => setDeletingDepartmentId(d.id)} className="btn btn-danger btn-sm">
+          <button onClick={() => setDeletingDepartmentId(d.id)} className="btn btn-danger btn-sm" title="Delete Program">
             <Trash2 size={14} /> Delete
           </button>
         </div>
@@ -140,11 +140,15 @@ export function DepartmentManager() {
     <div>
       <div style={{ display: "flex", alignItems: "center", justifyContent: "space-between", marginBottom: "1.5rem" }}>
         <div>
-          <h1 style={{ fontSize: "1.5rem", fontWeight: 800, color: "var(--text-primary)" }}>Academic Departments</h1>
-          <p style={{ fontSize: "0.875rem", color: "var(--text-secondary)" }}>Manage college departments and academic branch codes</p>
+          <h1 style={{ fontSize: "1.5rem", fontWeight: 800, fontFamily: "var(--font-display)", color: "var(--text-primary)" }}>
+            Play Programs & Age Groups 🎨
+          </h1>
+          <p style={{ fontSize: "0.875rem", color: "var(--text-secondary)" }}>
+            Manage early childhood play programs, age group brackets, and class divisions.
+          </p>
         </div>
-        <button onClick={openCreateModal} className="btn btn-primary">
-          <Plus size={18} /> Add Department
+        <button onClick={openCreateModal} className="btn btn-amber">
+          <Plus size={18} /> Add Play Program
         </button>
       </div>
 

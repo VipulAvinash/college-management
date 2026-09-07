@@ -163,30 +163,30 @@ export function FacultyManager() {
 
   const columns: Column<Faculty>[] = [
     {
-      header: "Faculty Info",
+      header: "Educator / Staff Info",
       render: (f) => (
         <div>
           <div style={{ fontWeight: 700, color: "var(--text-primary)" }}>
             {f.firstName} {f.lastName}
           </div>
           <div style={{ fontSize: "0.75rem", color: "var(--text-muted)", display: "flex", alignItems: "center", gap: "0.375rem" }}>
-            <span style={{ fontFamily: "monospace", background: "#f1f5f9", padding: "0.125rem 0.375rem", borderRadius: 4 }}>
-              {f.employeeId}
+            <span style={{ fontFamily: "monospace", background: "#fef3c7", color: "#d97706", padding: "0.125rem 0.375rem", borderRadius: 4, fontWeight: 700 }}>
+              ID: {f.employeeId}
             </span>
           </div>
         </div>
       )
     },
     {
-      header: "Designation & Dept",
+      header: "Role & Program",
       render: (f) => {
         const dep = departments.find((d) => d.id === f.departmentId);
         return (
           <div style={{ fontSize: "0.8125rem" }}>
-            <div style={{ fontWeight: 600, color: "var(--text-primary)", display: "flex", alignItems: "center", gap: "0.375rem" }}>
-              <Briefcase size={13} color="var(--text-muted)" /> {f.designation}
+            <div style={{ fontWeight: 700, color: "var(--text-primary)", display: "flex", alignItems: "center", gap: "0.375rem" }}>
+              <Briefcase size={13} color="#d97706" /> {f.designation}
             </div>
-            <div style={{ fontSize: "0.75rem", color: "var(--text-muted)" }}>
+            <div style={{ fontSize: "0.75rem", color: "#d97706", fontWeight: 600 }}>
               {dep ? dep.name : "N/A"} ({dep?.code})
             </div>
           </div>
@@ -217,10 +217,10 @@ export function FacultyManager() {
       header: "Actions",
       render: (f) => (
         <div style={{ display: "flex", gap: "0.5rem" }}>
-          <button onClick={() => openEditModal(f)} className="btn btn-secondary btn-sm">
+          <button onClick={() => openEditModal(f)} className="btn btn-secondary btn-sm" title="Edit Educator Info">
             <Edit2 size={14} />
           </button>
-          <button onClick={() => setDeletingFacultyId(f.id)} className="btn btn-danger btn-sm">
+          <button onClick={() => setDeletingFacultyId(f.id)} className="btn btn-danger btn-sm" title="Remove Record">
             <Trash2 size={14} />
           </button>
         </div>
@@ -232,18 +232,22 @@ export function FacultyManager() {
     <div>
       <div style={{ display: "flex", alignItems: "center", justifyContent: "space-between", marginBottom: "1.5rem" }}>
         <div>
-          <h1 style={{ fontSize: "1.5rem", fontWeight: 800, color: "var(--text-primary)" }}>Faculty Directory</h1>
-          <p style={{ fontSize: "0.875rem", color: "var(--text-secondary)" }}>Manage teaching staff, designations, and departmental assignments</p>
+          <h1 style={{ fontSize: "1.5rem", fontWeight: 800, fontFamily: "var(--font-display)", color: "var(--text-primary)" }}>
+            Educators & Caregivers 👩‍🏫
+          </h1>
+          <p style={{ fontSize: "0.875rem", color: "var(--text-secondary)" }}>
+            Manage preschool teachers, caregivers, activity coaches, and program assignments.
+          </p>
         </div>
       </div>
 
       <SearchFilterBar
         searchQuery={search}
         onSearchChange={(val) => { setSearch(val); setPage(1); }}
-        placeholder="Search by Employee ID, name or email..."
+        placeholder="Search by Educator ID, name or email..."
         actionButton={
-          <button onClick={openCreateModal} className="btn btn-primary">
-            <Plus size={18} /> Add Faculty Member
+          <button onClick={openCreateModal} className="btn btn-amber">
+            <Plus size={18} /> Add Educator / Staff
           </button>
         }
       >
@@ -253,7 +257,7 @@ export function FacultyManager() {
           value={departmentId}
           onChange={(e) => { setDepartmentId(e.target.value); setPage(1); }}
         >
-          <option value="">All Departments</option>
+          <option value="">All Play Programs</option>
           {departments.map((d) => (
             <option key={d.id} value={d.id}>{d.name} ({d.code})</option>
           ))}

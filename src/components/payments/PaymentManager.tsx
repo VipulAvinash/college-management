@@ -138,20 +138,22 @@ export function PaymentManager() {
       )
     },
     {
-      header: "Student",
+      header: "Toddler / Child",
       render: (p) => {
         const s = students.find((st) => st.id === p.studentId);
         return (
           <div>
-            <div style={{ fontWeight: 600, fontSize: "0.875rem" }}>{s ? `${s.firstName} ${s.lastName}` : "Student Record"}</div>
-            <div style={{ fontSize: "0.75rem", color: "var(--text-muted)" }}>{s?.studentId || p.studentId}</div>
+            <div style={{ fontWeight: 700, fontSize: "0.875rem", color: "var(--text-primary)" }}>
+              {s ? `${s.firstName} ${s.lastName}` : "Toddler Record"}
+            </div>
+            <div style={{ fontSize: "0.75rem", color: "var(--text-muted)" }}>Admission ID: {s?.studentId || p.studentId}</div>
           </div>
         );
       }
     },
     {
       header: "Amount Paid",
-      render: (p) => <span style={{ fontWeight: 800, color: "var(--success-text)", fontSize: "0.9375rem" }}>₹{Number(p.amount).toLocaleString()}</span>
+      render: (p) => <span style={{ fontWeight: 800, color: "#059669", fontSize: "0.9375rem" }}>₹{Number(p.amount).toLocaleString()}</span>
     },
     {
       header: "Method",
@@ -167,11 +169,15 @@ export function PaymentManager() {
     <div>
       <div style={{ display: "flex", alignItems: "center", justifyContent: "space-between", marginBottom: "1.5rem" }}>
         <div>
-          <h1 style={{ fontSize: "1.5rem", fontWeight: 800, color: "var(--text-primary)" }}>Payment History</h1>
-          <p style={{ fontSize: "0.875rem", color: "var(--text-secondary)" }}>Audit log of recorded fee transactions and payments</p>
+          <h1 style={{ fontSize: "1.5rem", fontWeight: 800, fontFamily: "var(--font-display)", color: "var(--text-primary)" }}>
+            Fee Receipts & Payment History 💰
+          </h1>
+          <p style={{ fontSize: "0.875rem", color: "var(--text-secondary)" }}>
+            Audit log of recorded tuition, daycare, and activity fee receipts.
+          </p>
         </div>
-        <button onClick={openCreateModal} className="btn btn-primary">
-          <Plus size={18} /> Record New Payment
+        <button onClick={openCreateModal} className="btn btn-amber">
+          <Plus size={18} /> Record Fee Payment
         </button>
       </div>
 

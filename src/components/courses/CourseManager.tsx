@@ -144,35 +144,35 @@ export function CourseManager() {
 
   const columns: Column<Course>[] = [
     {
-      header: "Course Name",
+      header: "Module Name & Details",
       render: (c) => (
         <div style={{ display: "flex", alignItems: "center", gap: "0.75rem" }}>
-          <div style={{ width: 36, height: 36, borderRadius: "var(--radius-md)", backgroundColor: "#fffbeb", color: "#d97706", display: "flex", alignItems: "center", justifyContent: "center" }}>
-            <BookOpen size={18} />
+          <div style={{ width: 38, height: 38, borderRadius: "50%", backgroundColor: "#f0f9ff", color: "#0ea5e9", display: "flex", alignItems: "center", justifyContent: "center", border: "1px solid #bae6fd" }}>
+            <BookOpen size={20} />
           </div>
           <div>
-            <div style={{ fontWeight: 700, color: "var(--text-primary)" }}>{c.name}</div>
-            <div style={{ fontSize: "0.75rem", color: "var(--text-muted)" }}>{c.description || "No description"}</div>
+            <div style={{ fontWeight: 800, color: "var(--text-primary)", fontFamily: "var(--font-display)" }}>{c.name}</div>
+            <div style={{ fontSize: "0.75rem", color: "var(--text-secondary)" }}>{c.description || "No description"}</div>
           </div>
         </div>
       )
     },
     {
-      header: "Course Code",
-      render: (c) => <Badge variant="warning">{c.code}</Badge>
+      header: "Module Code",
+      render: (c) => <Badge variant="info">{c.code}</Badge>
     },
     {
-      header: "Department",
+      header: "Play Program",
       render: (c) => {
         const dep = departments.find((d) => d.id === c.departmentId);
-        return <span style={{ fontWeight: 600, fontSize: "0.8125rem" }}>{dep ? dep.name : "N/A"}</span>;
+        return <span style={{ fontWeight: 700, fontSize: "0.8125rem", color: "#d97706" }}>{dep ? dep.name : "N/A"}</span>;
       }
     },
     {
       header: "Duration",
       render: (c) => (
         <div style={{ display: "flex", alignItems: "center", gap: "0.375rem", fontSize: "0.8125rem", color: "var(--text-secondary)" }}>
-          <Clock size={14} /> {c.durationYears} Years
+          <Clock size={14} /> {c.durationYears} Term Years
         </div>
       )
     },
@@ -180,10 +180,10 @@ export function CourseManager() {
       header: "Actions",
       render: (c) => (
         <div style={{ display: "flex", gap: "0.5rem" }}>
-          <button onClick={() => openEditModal(c)} className="btn btn-secondary btn-sm">
+          <button onClick={() => openEditModal(c)} className="btn btn-secondary btn-sm" title="Edit Module">
             <Edit2 size={14} /> Edit
           </button>
-          <button onClick={() => setDeletingCourseId(c.id)} className="btn btn-danger btn-sm">
+          <button onClick={() => setDeletingCourseId(c.id)} className="btn btn-danger btn-sm" title="Delete Module">
             <Trash2 size={14} /> Delete
           </button>
         </div>
@@ -195,11 +195,15 @@ export function CourseManager() {
     <div>
       <div style={{ display: "flex", alignItems: "center", justifyContent: "space-between", marginBottom: "1.5rem" }}>
         <div>
-          <h1 style={{ fontSize: "1.5rem", fontWeight: 800, color: "var(--text-primary)" }}>Degree Courses</h1>
-          <p style={{ fontSize: "0.875rem", color: "var(--text-secondary)" }}>Manage degree programs and curriculum durations</p>
+          <h1 style={{ fontSize: "1.5rem", fontWeight: 800, fontFamily: "var(--font-display)", color: "var(--text-primary)" }}>
+            Activity & Learning Modules 🧩
+          </h1>
+          <p style={{ fontSize: "0.875rem", color: "var(--text-secondary)" }}>
+            Manage preschool activity modules, arts & craft labs, phonics, and co-curricular programs.
+          </p>
         </div>
-        <button onClick={openCreateModal} className="btn btn-primary">
-          <Plus size={18} /> Add Course
+        <button onClick={openCreateModal} className="btn btn-amber">
+          <Plus size={18} /> Add Activity Module
         </button>
       </div>
 
@@ -210,7 +214,7 @@ export function CourseManager() {
           value={departmentFilter}
           onChange={(e) => setDepartmentFilter(e.target.value)}
         >
-          <option value="">All Departments</option>
+          <option value="">All Play Programs</option>
           {departments.map((d) => (
             <option key={d.id} value={d.id}>{d.name} ({d.code})</option>
           ))}

@@ -2,8 +2,8 @@ import type { ReactNode } from "react";
 import "./globals.css";
 
 export const metadata = {
-  title: "College Management System",
-  description: "Admin-managed college information system"
+  title: "Chocolate Kids Play School | Early Childhood Education & Preschool",
+  description: "Nurturing young minds through play, exploration, and structured early childhood development."
 };
 
 export default function RootLayout({ children }: { children: ReactNode }) {

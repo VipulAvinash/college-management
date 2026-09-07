@@ -1,75 +1,144 @@
 import Link from "next/link";
-import Image from "next/image";
 import { announcementService } from "@/services/announcement.service";
 import { dashboardService } from "@/services/dashboard.service";
 import { Badge } from "@/components/ui/Badge";
 import {
-  GraduationCap,
+  Smile,
+  Sparkles,
+  Baby,
+  Palette,
+  Music,
+  Heart,
+  Sun,
+  ShieldCheck,
+  Award,
+  BookOpen,
   ArrowRight,
   Bell,
-  Users,
-  BookOpen,
-  Building2,
-  ShieldCheck,
-  CheckCircle2,
   Calendar,
-  ExternalLink,
-  Mail,
-  Award,
-  CreditCard,
-  Lock,
+  MapPin,
+  Phone,
+  Clock,
+  Users,
+  CheckCircle2,
+  Star,
   Compass,
-  FileText
+  HeartHandshake
 } from "lucide-react";
 
 export default async function HomePage() {
-  const publishedAnnouncements = await announcementService.listPublished();
+  const publishedAnnouncements = await announcementService.listPublished().catch(() => []);
   const stats = await dashboardService.getStats().catch(() => null);
 
-  // Default fallback announcements matching Figma prototype
   const announcementsList = publishedAnnouncements.length > 0
     ? publishedAnnouncements
     : [
         {
           id: "1",
-          title: "Fall Semester Mid-Term Examination Schedule Released",
-          content: "All department timetables are uploaded for mid-term examination. Excellent student seating allocations and timetables are downloadable.",
-          createdAt: new Date("2025-10-24"),
-          category: "ACADEMICS",
-          categoryColor: "info" as const,
-          linkText: "Read Full Notice →"
+          title: "Annual Kindergarten Carnival & Puppet Show 🎪",
+          content: "Join us this Saturday for a magical day filled with live puppet shows, face painting, organic snacks, and creative games for kids!",
+          createdAt: new Date("2026-09-01"),
+          category: "CARNIVAL",
+          categoryColor: "success" as const,
+          linkText: "View Event Schedule →"
         },
         {
           id: "2",
-          title: "Annual Tech Symposium: HackSummit 2026 Registration Open",
-          content: "Our largest tech festival begins next month! Join students from across the nation for 36 hours of creative building, design, and competitive coding.",
-          createdAt: new Date("2025-10-20"),
-          category: "CAMPUS LIFE",
-          categoryColor: "success" as const,
-          linkText: "Register Now →"
+          title: "Admissions Open for Session 2025-26 🌟",
+          content: "Enrolling for Playgroup, Nursery, Junior KG, and Daycare. Limited seats per batch to maintain a caring 1:8 caregiver-to-child ratio.",
+          createdAt: new Date("2026-08-28"),
+          category: "ADMISSION",
+          categoryColor: "info" as const,
+          linkText: "Apply Online Now →"
         },
         {
           id: "3",
-          title: "Graduation Capstone Submission Guidelines & Deadlines",
-          content: "Attention final-year students: all Capstone repository files and documentation must be updated inside the student record portal by November 15th.",
-          createdAt: new Date("2025-10-18"),
-          category: "ADMINISTRATION",
+          title: "Parent-Teacher Coffee & Progress Morning ☕",
+          content: "Interactive coffee morning with our early childhood specialists to discuss toddler milestone development and sensory play habits.",
+          createdAt: new Date("2026-08-20"),
+          category: "MEET",
           categoryColor: "warning" as const,
-          linkText: "Review Guidelines →"
+          linkText: "RSVP Here →"
         }
       ];
 
+  const programs = [
+    {
+      title: "Playgroup Explorers",
+      age: "1.5 – 2.5 Years",
+      icon: Baby,
+      color: "#ff6b81",
+      bgColor: "#fff0f3",
+      description: "Sensory play, rhythm activities, social interaction, and motor skill development in a gentle, warm environment."
+    },
+    {
+      title: "Nursery Learners",
+      age: "2.5 – 3.5 Years",
+      icon: Sparkles,
+      color: "#f59e0b",
+      bgColor: "#fffbeb",
+      description: "Phonics awareness, color discovery, guided storytelling, and beginner Montessori hands-on learning modules."
+    },
+    {
+      title: "Junior KG Innovators",
+      age: "3.5 – 4.5 Years",
+      icon: Palette,
+      color: "#10b981",
+      bgColor: "#ecfdf5",
+      description: "Early math concepts, alphabet mastery, creative arts, drama play, and structured group cooperation."
+    },
+    {
+      title: "Senior KG Scholars",
+      age: "4.5 – 5.5 Years",
+      icon: BookOpen,
+      color: "#0ea5e9",
+      bgColor: "#f0f9ff",
+      description: "Primary school readiness, reading fluency, environmental science fun, and logical reasoning games."
+    },
+    {
+      title: "Daycare & After-School",
+      age: "1 – 8 Years",
+      icon: Heart,
+      color: "#8b5cf6",
+      bgColor: "#f5f3ff",
+      description: "Nutritious warm meals, supervised nap zones, homework assistance, and evening outdoor play."
+    }
+  ];
+
+  const pillars = [
+    {
+      title: "100% Live CCTV Monitored",
+      desc: "Parents get secure mobile access to view their toddler's classroom activities and rest areas anytime.",
+      icon: ShieldCheck
+    },
+    {
+      title: "Play-Based Montessori Curriculum",
+      desc: "Thoughtfully crafted play stations designed to spark curiosity, spatial awareness, and creative expression.",
+      icon: Compass
+    },
+    {
+      title: "Nutritious Meal Plans",
+      desc: "Freshly prepared, organic, child-friendly snacks and warm lunches verified by pediatric nutritionists.",
+      icon: Sun
+    },
+    {
+      title: "Certified & Caring Staff",
+      desc: "Experienced early childhood educators trained in pediatric CPR, child psychology, and warm mentorship.",
+      icon: HeartHandshake
+    }
+  ];
+
   return (
-    <div style={{ minHeight: "100vh", display: "flex", flexDirection: "column", backgroundColor: "#f8fafc" }}>
+    <div style={{ minHeight: "100vh", display: "flex", flexDirection: "column", backgroundColor: "var(--bg-main)" }}>
       {/* 1. Header Navigation Bar */}
       <header
         style={{
           backgroundColor: "#ffffff",
-          borderBottom: "1px solid #e2e8f0",
+          borderBottom: "2px solid #fce7f3",
           position: "sticky",
           top: 0,
           zIndex: 50,
-          boxShadow: "var(--shadow-sm)"
+          boxShadow: "0 4px 20px rgba(74, 44, 17, 0.05)"
         }}
       >
         <div
@@ -83,243 +152,238 @@ export default async function HomePage() {
           }}
         >
           {/* Logo & Branding */}
-          <Link href="/" style={{ display: "flex", alignItems: "center", gap: "0.75rem" }}>
+          <Link href="/" style={{ display: "flex", alignItems: "center", gap: "0.875rem" }}>
             <div
               style={{
-                width: 42,
-                height: 42,
-                borderRadius: "var(--radius-md)",
-                background: "linear-gradient(135deg, #4f46e5 0%, #4338ca 100%)",
+                width: 46,
+                height: 46,
+                borderRadius: "50%",
+                background: "linear-gradient(135deg, #f59e0b 0%, #d97706 100%)",
                 display: "flex",
                 alignItems: "center",
                 justifyContent: "center",
                 color: "#ffffff",
-                boxShadow: "0 4px 10px rgba(79, 70, 229, 0.3)"
+                boxShadow: "0 6px 16px rgba(245, 158, 11, 0.35)"
               }}
             >
-              <GraduationCap size={24} />
+              <Smile size={28} />
             </div>
             <div>
-              <span style={{ fontSize: "1.125rem", fontWeight: 800, color: "var(--text-primary)", display: "block", lineHeight: 1.2 }}>
-                Apex Institute of Technology
+              <span style={{ fontSize: "1.25rem", fontWeight: 800, color: "var(--text-primary)", fontFamily: "var(--font-display)", display: "block", lineHeight: 1.1 }}>
+                Chocolate Kids
               </span>
-              <span style={{ fontSize: "0.75rem", color: "var(--text-muted)", fontWeight: 500 }}>
-                Excellence in Higher Education
+              <span style={{ fontSize: "0.75rem", color: "#d97706", fontWeight: 700, letterSpacing: "0.05em", textTransform: "uppercase" }}>
+                Play School & Daycare
               </span>
             </div>
           </Link>
 
-          {/* Center Navigation Links */}
+          {/* Navigation Links */}
           <nav style={{ display: "flex", alignItems: "center", gap: "2rem" }}>
-            <a href="#announcements" style={{ fontSize: "0.875rem", fontWeight: 600, color: "var(--text-secondary)" }}>
-              Announcements
+            <a href="#programs" style={{ fontSize: "0.9375rem", fontWeight: 700, color: "var(--text-primary)" }}>
+              Play Programs
             </a>
-            <a href="#departments" style={{ fontSize: "0.875rem", fontWeight: 600, color: "var(--text-secondary)" }}>
-              Departments
+            <a href="#pillars" style={{ fontSize: "0.9375rem", fontWeight: 700, color: "var(--text-primary)" }}>
+              Why Us
             </a>
-            <a href="#faculty" style={{ fontSize: "0.875rem", fontWeight: 600, color: "var(--text-secondary)" }}>
-              Faculty Directory
+            <a href="#notices" style={{ fontSize: "0.9375rem", fontWeight: 700, color: "var(--text-primary)" }}>
+              School News
             </a>
-            <a href="#academics" style={{ fontSize: "0.875rem", fontWeight: 600, color: "var(--text-secondary)" }}>
-              Academics
+            <a href="#contact" style={{ fontSize: "0.9375rem", fontWeight: 700, color: "var(--text-primary)" }}>
+              Campus Tour
             </a>
           </nav>
 
-          {/* Admin Login Button */}
-          <div style={{ display: "flex", alignItems: "center", gap: "1rem" }}>
-            <Link href="/login" className="btn btn-primary">
-              <ShieldCheck size={16} /> Admin Portal Login
+          {/* Action CTAs */}
+          <div style={{ display: "flex", alignItems: "center", gap: "0.875rem" }}>
+            <Link href="/login" className="btn btn-secondary btn-sm" style={{ border: "2px solid #fde68a" }}>
+              Parent & Staff Login
             </Link>
+            <a href="#contact" className="btn btn-amber btn-sm">
+              ✨ Schedule a Tour
+            </a>
           </div>
         </div>
       </header>
 
-      {/* 2. Hero Section */}
+      {/* 2. Playful Hero Banner */}
       <section
         style={{
-          background: "linear-gradient(135deg, #0b132b 0%, #1c2541 100%)",
+          background: "radial-gradient(circle at top center, #3d2310 0%, #251206 100%)",
           color: "#ffffff",
-          padding: "5rem 1.5rem 7rem",
+          padding: "5.5rem 1.5rem 6.5rem",
           position: "relative",
-          textAlign: "center"
+          textAlign: "center",
+          overflow: "hidden"
         }}
       >
-        <div style={{ maxWidth: 860, margin: "0 auto", position: "relative", zIndex: 2 }}>
+        <div style={{ maxWidth: 900, margin: "0 auto", position: "relative", zIndex: 2 }}>
           <div style={{ marginBottom: "1.5rem" }}>
             <span
               style={{
                 display: "inline-flex",
                 alignItems: "center",
                 gap: "0.5rem",
-                padding: "0.375rem 1rem",
+                padding: "0.4rem 1.2rem",
                 borderRadius: "9999px",
-                backgroundColor: "rgba(99, 102, 241, 0.18)",
-                color: "#a5b4fc",
-                fontSize: "0.75rem",
+                backgroundColor: "rgba(245, 158, 11, 0.2)",
+                color: "#fcd34d",
+                border: "1px solid rgba(245, 158, 11, 0.4)",
+                fontSize: "0.875rem",
                 fontWeight: 700,
-                letterSpacing: "0.08em",
-                textTransform: "uppercase",
-                border: "1px solid rgba(99, 102, 241, 0.3)"
+                letterSpacing: "0.02em"
               }}
             >
-              <CheckCircle2 size={14} /> Official Campus Information System
+              <Sparkles size={16} /> Admissions Open For Session 2025–26
             </span>
           </div>
 
           <h1
             style={{
-              fontSize: "3.25rem",
+              fontSize: "3.2rem",
               fontWeight: 800,
+              fontFamily: "var(--font-display)",
               lineHeight: 1.15,
-              letterSpacing: "-0.025em",
               marginBottom: "1.25rem",
+              letterSpacing: "-0.01em",
               color: "#ffffff"
             }}
           >
-            Empowering Education through Modern Management
+            Where Curiosity & Joy Begin Their Journey! 🍫🎈
           </h1>
 
           <p
             style={{
-              fontSize: "1.125rem",
-              color: "#94a3b8",
+              fontSize: "1.15rem",
+              color: "#f3e8df",
               lineHeight: 1.6,
               maxWidth: 720,
-              margin: "0 auto 2.25rem"
+              margin: "0 auto 2.5rem"
             }}
           >
-            Comprehensive portal for student records, department curricula, faculty directories, academic fee management, and campus announcements.
+            Welcome to <strong>Chocolate Kids Play School</strong> — a magical early learning environment where toddlers explore, create, sing, and grow with loving, certified caregivers.
           </p>
 
           <div style={{ display: "flex", justifyContent: "center", gap: "1rem", flexWrap: "wrap" }}>
-            <Link href="/login" className="btn btn-primary" style={{ padding: "0.75rem 1.75rem", fontSize: "0.9375rem" }}>
-              Access Admin Portal <ArrowRight size={18} />
-            </Link>
-            <a href="#departments" className="btn btn-dark-glass" style={{ padding: "0.75rem 1.75rem", fontSize: "0.9375rem" }}>
-              Explore Departments
+            <a href="#contact" className="btn btn-amber" style={{ padding: "0.85rem 2rem", fontSize: "1rem" }}>
+              <Smile size={20} /> Enroll Your Toddler Today
+            </a>
+            <a href="#programs" className="btn btn-dark-glass" style={{ padding: "0.85rem 2rem", fontSize: "1rem" }}>
+              <BookOpen size={20} /> Explore Play Programs
             </a>
           </div>
-        </div>
-      </section>
 
-      {/* 3. Floating Stats Bar (Overlapping Hero) */}
-      <section style={{ maxWidth: 1180, width: "100%", margin: "-3rem auto 4.5rem", padding: "0 1.5rem", position: "relative", zIndex: 10 }}>
-        <div
-          style={{
-            display: "grid",
-            gridTemplateColumns: "repeat(auto-fit, minmax(220px, 1fr))",
-            gap: "1.5rem",
-            background: "#ffffff",
-            borderRadius: "var(--radius-xl)",
-            padding: "1.75rem 2rem",
-            boxShadow: "0 20px 40px -15px rgba(15, 23, 42, 0.12)",
-            border: "1px solid var(--border-light)"
-          }}
-        >
-          <div style={{ display: "flex", alignItems: "center", gap: "1rem" }}>
-            <div style={{ width: 50, height: 50, borderRadius: "var(--radius-md)", backgroundColor: "#eef2ff", color: "#4f46e5", display: "flex", alignItems: "center", justifyContent: "center" }}>
-              <Users size={24} />
+          {/* Quick Metrics Banner */}
+          <div
+            style={{
+              marginTop: "4rem",
+              display: "grid",
+              gridTemplateColumns: "repeat(auto-fit, minmax(180px, 1fr))",
+              gap: "1.5rem",
+              backgroundColor: "rgba(255, 255, 255, 0.08)",
+              backdropFilter: "blur(12px)",
+              borderRadius: "var(--radius-xl)",
+              padding: "1.75rem 2rem",
+              border: "1px solid rgba(255, 255, 255, 0.15)"
+            }}
+          >
+            <div>
+              <div style={{ fontSize: "2rem", fontWeight: 800, color: "#fcd34d", fontFamily: "var(--font-display)" }}>
+                {stats?.students?.total || 250}+
+              </div>
+              <div style={{ fontSize: "0.875rem", color: "#f3e8df", fontWeight: 600 }}>Happy Toddlers Enrolled</div>
             </div>
             <div>
-              <div style={{ fontSize: "1.75rem", fontWeight: 800, color: "var(--text-primary)", lineHeight: 1.1 }}>
-                {stats?.students.active ?? 10}
+              <div style={{ fontSize: "2rem", fontWeight: 800, color: "#ff85a1", fontFamily: "var(--font-display)" }}>
+                {stats?.faculty?.total || 18}
               </div>
-              <div style={{ fontSize: "0.8125rem", color: "var(--text-muted)", fontWeight: 500, marginTop: "0.25rem" }}>
-                Active Students
-              </div>
-            </div>
-          </div>
-
-          <div style={{ display: "flex", alignItems: "center", gap: "1rem" }}>
-            <div style={{ width: 50, height: 50, borderRadius: "var(--radius-md)", backgroundColor: "#ecfdf5", color: "#059669", display: "flex", alignItems: "center", justifyContent: "center" }}>
-              <GraduationCap size={24} />
+              <div style={{ fontSize: "0.875rem", color: "#f3e8df", fontWeight: 600 }}>Certified Caregivers</div>
             </div>
             <div>
-              <div style={{ fontSize: "1.75rem", fontWeight: 800, color: "var(--text-primary)", lineHeight: 1.1 }}>
-                {stats?.faculty.active ?? 5}
+              <div style={{ fontSize: "2rem", fontWeight: 800, color: "#34d399", fontFamily: "var(--font-display)" }}>
+                {stats?.departments?.total || 5}
               </div>
-              <div style={{ fontSize: "0.8125rem", color: "var(--text-muted)", fontWeight: 500, marginTop: "0.25rem" }}>
-                Faculty Members
-              </div>
-            </div>
-          </div>
-
-          <div style={{ display: "flex", alignItems: "center", gap: "1rem" }}>
-            <div style={{ width: 50, height: 50, borderRadius: "var(--radius-md)", backgroundColor: "#eff6ff", color: "#2563eb", display: "flex", alignItems: "center", justifyContent: "center" }}>
-              <Building2 size={24} />
+              <div style={{ fontSize: "0.875rem", color: "#f3e8df", fontWeight: 600 }}>Play Age Programs</div>
             </div>
             <div>
-              <div style={{ fontSize: "1.75rem", fontWeight: 800, color: "var(--text-primary)", lineHeight: 1.1 }}>
-                {stats?.departments.total ?? 5}
+              <div style={{ fontSize: "2rem", fontWeight: 800, color: "#38bdf8", fontFamily: "var(--font-display)" }}>
+                1 : 8
               </div>
-              <div style={{ fontSize: "0.8125rem", color: "var(--text-muted)", fontWeight: 500, marginTop: "0.25rem" }}>
-                Departments
-              </div>
-            </div>
-          </div>
-
-          <div style={{ display: "flex", alignItems: "center", gap: "1rem" }}>
-            <div style={{ width: 50, height: 50, borderRadius: "var(--radius-md)", backgroundColor: "#fffbeb", color: "#d97706", display: "flex", alignItems: "center", justifyContent: "center" }}>
-              <BookOpen size={24} />
-            </div>
-            <div>
-              <div style={{ fontSize: "1.75rem", fontWeight: 800, color: "var(--text-primary)", lineHeight: 1.1 }}>
-                {stats?.courses.total ?? 6}
-              </div>
-              <div style={{ fontSize: "0.8125rem", color: "var(--text-muted)", fontWeight: 500, marginTop: "0.25rem" }}>
-                Offered Courses
-              </div>
+              <div style={{ fontSize: "0.875rem", color: "#f3e8df", fontWeight: 600 }}>Teacher-Child Ratio</div>
             </div>
           </div>
         </div>
       </section>
 
-      {/* 4. Campus Announcements Section */}
-      <section id="announcements" style={{ maxWidth: 1240, width: "100%", margin: "0 auto 5rem", padding: "0 1.5rem" }}>
-        <div style={{ display: "flex", alignItems: "flex-end", justifyContent: "space-between", marginBottom: "2rem" }}>
-          <div>
-            <span className="category-pill" style={{ backgroundColor: "#eff6ff", color: "#1d4ed8", marginBottom: "0.5rem" }}>
-              WHAT&apos;S HAPPENING
-            </span>
-            <h2 style={{ fontSize: "2rem", fontWeight: 800, color: "var(--text-primary)", letterSpacing: "-0.02em" }}>
-              Campus Announcements
-            </h2>
-            <p style={{ fontSize: "0.9375rem", color: "var(--text-muted)", marginTop: "0.25rem" }}>
-              The latest official notices, event updates, academic deadlines, and academic board decisions.
-            </p>
-          </div>
-          <span className="badge badge-info" style={{ padding: "0.4rem 0.875rem", fontSize: "0.8125rem" }}>
-            <Bell size={14} /> OFFICIAL FEED
+      {/* 3. Play Programs Section */}
+      <section id="programs" style={{ padding: "5rem 1.5rem", maxWidth: 1240, margin: "0 auto", width: "100%" }}>
+        <div style={{ textAlign: "center", marginBottom: "3.5rem" }}>
+          <span style={{ color: "#d97706", fontWeight: 700, letterSpacing: "0.08em", fontSize: "0.8125rem", textTransform: "uppercase" }}>
+            Tailored Early Development
           </span>
+          <h2 style={{ fontSize: "2.25rem", fontWeight: 800, fontFamily: "var(--font-display)", color: "var(--text-primary)", marginTop: "0.375rem" }}>
+            Our Play Programs & Age Groups 🧸
+          </h2>
+          <p style={{ color: "var(--text-secondary)", fontSize: "1rem", maxWidth: 600, margin: "0.5rem auto 0" }}>
+            Structured around play-based exploration, sensory discovery, and joyful early learning milestones.
+          </p>
         </div>
 
-        <div style={{ display: "grid", gridTemplateColumns: "repeat(auto-fit, minmax(340px, 1fr))", gap: "1.75rem" }}>
-          {announcementsList.slice(0, 3).map((a, idx) => {
-            const categories = ["ACADEMICS", "CAMPUS LIFE", "ADMINISTRATION"];
-            const colors = ["info", "success", "warning"] as const;
-            const category = (a as any).category || categories[idx % 3];
-            const variant = (a as any).categoryColor || colors[idx % 3];
-            const dateStr = new Date(a.createdAt).toLocaleDateString("en-US", { month: "short", day: "numeric", year: "numeric" }).toUpperCase();
-
+        <div style={{ display: "grid", gridTemplateColumns: "repeat(auto-fit, minmax(220px, 1fr))", gap: "1.5rem" }}>
+          {programs.map((p, idx) => {
+            const Icon = p.icon;
             return (
-              <div key={a.id} className="card" style={{ display: "flex", flexDirection: "column", justifyContent: "space-between", gap: "1.25rem" }}>
+              <div
+                key={idx}
+                className="card"
+                style={{
+                  display: "flex",
+                  flexDirection: "column",
+                  justifyContent: "space-between",
+                  borderColor: "#fce7f3",
+                  position: "relative",
+                  overflow: "hidden"
+                }}
+              >
                 <div>
-                  <div style={{ display: "flex", alignItems: "center", justifyContent: "space-between", marginBottom: "1rem" }}>
-                    <Badge variant={variant}>{category}</Badge>
-                    <span style={{ fontSize: "0.75rem", fontWeight: 600, color: "var(--text-muted)", display: "flex", alignItems: "center", gap: "0.375rem" }}>
-                      <Calendar size={13} /> {dateStr}
-                    </span>
+                  <div
+                    style={{
+                      width: 52,
+                      height: 52,
+                      borderRadius: "var(--radius-md)",
+                      backgroundColor: p.bgColor,
+                      color: p.color,
+                      display: "flex",
+                      alignItems: "center",
+                      justifyContent: "center",
+                      marginBottom: "1.25rem",
+                      boxShadow: "0 4px 12px rgba(0,0,0,0.04)"
+                    }}
+                  >
+                    <Icon size={26} />
                   </div>
-                  <h3 style={{ fontSize: "1.125rem", fontWeight: 700, color: "var(--text-primary)", lineHeight: 1.35, marginBottom: "0.75rem" }}>
-                    {a.title}
+                  <span
+                    style={{
+                      fontSize: "0.75rem",
+                      fontWeight: 700,
+                      color: p.color,
+                      backgroundColor: p.bgColor,
+                      padding: "0.2rem 0.6rem",
+                      borderRadius: "9999px"
+                    }}
+                  >
+                    {p.age}
+                  </span>
+                  <h3 style={{ fontSize: "1.15rem", fontWeight: 800, fontFamily: "var(--font-display)", color: "var(--text-primary)", marginTop: "0.75rem" }}>
+                    {p.title}
                   </h3>
-                  <p style={{ fontSize: "0.875rem", color: "var(--text-secondary)", lineHeight: 1.6 }}>
-                    {a.content}
+                  <p style={{ fontSize: "0.875rem", color: "var(--text-secondary)", marginTop: "0.5rem", lineHeight: 1.5 }}>
+                    {p.description}
                   </p>
                 </div>
-                <div style={{ borderTop: "1px solid var(--border-light)", paddingTop: "1rem", marginTop: "auto" }}>
-                  <a href="#announcements" style={{ fontSize: "0.875rem", fontWeight: 700, color: "var(--primary)", display: "inline-flex", alignItems: "center", gap: "0.375rem" }}>
-                    {(a as any).linkText || "Read Full Notice →"}
+                <div style={{ marginTop: "1.5rem", paddingTop: "1rem", borderTop: "1px solid var(--border-light)" }}>
+                  <a href="#contact" style={{ fontSize: "0.8125rem", fontWeight: 700, color: "var(--primary)", display: "flex", alignItems: "center", gap: "0.375rem" }}>
+                    Learn More <ArrowRight size={14} />
                   </a>
                 </div>
               </div>
@@ -328,335 +392,215 @@ export default async function HomePage() {
         </div>
       </section>
 
-      {/* 5. Our Leading Departments Section */}
-      <section id="departments" style={{ maxWidth: 1240, width: "100%", margin: "0 auto 5rem", padding: "0 1.5rem" }}>
-        <div style={{ textAlign: "center", maxWidth: 640, margin: "0 auto 2.5rem" }}>
-          <span className="category-pill" style={{ backgroundColor: "#eef2ff", color: "#4f46e5", marginBottom: "0.5rem" }}>
-            EXPLORE OUR BRANCHES
-          </span>
-          <h2 style={{ fontSize: "2rem", fontWeight: 800, color: "var(--text-primary)", letterSpacing: "-0.02em" }}>
-            Our Leading Departments
-          </h2>
-          <p style={{ fontSize: "0.9375rem", color: "var(--text-muted)", marginTop: "0.375rem" }}>
-            Explore our state-of-the-art curricula, equipped labs, and academic opportunities across specialized disciplines.
-          </p>
-        </div>
-
-        <div style={{ display: "grid", gridTemplateColumns: "repeat(auto-fit, minmax(340px, 1fr))", gap: "1.75rem" }}>
-          {/* Card 1 */}
-          <div className="card" style={{ display: "flex", flexDirection: "column", justifyContent: "space-between" }}>
-            <div>
-              <div style={{ width: 46, height: 46, borderRadius: "var(--radius-md)", backgroundColor: "#eef2ff", color: "#4f46e5", display: "flex", alignItems: "center", justifyContent: "center", marginBottom: "1.25rem" }}>
-                <Building2 size={24} />
-              </div>
-              <h3 style={{ fontSize: "1.25rem", fontWeight: 800, color: "var(--text-primary)", marginBottom: "0.5rem" }}>
-                Computer Science & Engineering
-              </h3>
-              <p style={{ fontSize: "0.875rem", color: "var(--text-secondary)", lineHeight: 1.6, marginBottom: "1.25rem" }}>
-                Covering Artificial Intelligence, Systems Programming, Software Engineering, and advanced Algorithms frameworks.
-              </p>
-              <div style={{ display: "flex", gap: "0.5rem", flexWrap: "wrap", marginBottom: "1.25rem" }}>
-                <span className="badge badge-neutral">AI & Machine Learning</span>
-                <span className="badge badge-neutral">Software Systems</span>
-              </div>
-            </div>
-            <div style={{ borderTop: "1px solid var(--border-light)", paddingTop: "1rem" }}>
-              <Link href="/login" style={{ fontSize: "0.875rem", fontWeight: 700, color: "var(--primary)", display: "inline-flex", alignItems: "center", gap: "0.375rem" }}>
-                Explore Curriculum <ExternalLink size={14} />
-              </Link>
-            </div>
+      {/* 4. Why Choose Us / Pillars */}
+      <section id="pillars" style={{ backgroundColor: "#fefcf9", padding: "5rem 1.5rem", borderTop: "1px solid #f3e8df", borderBottom: "1px solid #f3e8df" }}>
+        <div style={{ maxWidth: 1240, margin: "0 auto" }}>
+          <div style={{ textAlign: "center", marginBottom: "3.5rem" }}>
+            <span style={{ color: "#d97706", fontWeight: 700, letterSpacing: "0.08em", fontSize: "0.8125rem", textTransform: "uppercase" }}>
+              Parent Peace of Mind
+            </span>
+            <h2 style={{ fontSize: "2.25rem", fontWeight: 800, fontFamily: "var(--font-display)", color: "var(--text-primary)", marginTop: "0.375rem" }}>
+              Why Families Love Chocolate Kids 💛
+            </h2>
+            <p style={{ color: "var(--text-secondary)", fontSize: "1rem", maxWidth: 640, margin: "0.5rem auto 0" }}>
+              We combine maximum safety, warm affection, and modern early childhood learning techniques.
+            </p>
           </div>
 
-          {/* Card 2 */}
-          <div className="card" style={{ display: "flex", flexDirection: "column", justifyContent: "space-between" }}>
-            <div>
-              <div style={{ width: 46, height: 46, borderRadius: "var(--radius-md)", backgroundColor: "#eff6ff", color: "#2563eb", display: "flex", alignItems: "center", justifyContent: "center", marginBottom: "1.25rem" }}>
-                <Building2 size={24} />
-              </div>
-              <h3 style={{ fontSize: "1.25rem", fontWeight: 800, color: "var(--text-primary)", marginBottom: "0.5rem" }}>
-                Electronics & Communication
-              </h3>
-              <p style={{ fontSize: "0.875rem", color: "var(--text-secondary)", lineHeight: 1.6, marginBottom: "1.25rem" }}>
-                Focusing on Signal Processing, Embedded Systems, Semiconductor Design, and modern Wireless Communication networks.
-              </p>
-              <div style={{ display: "flex", gap: "0.5rem", flexWrap: "wrap", marginBottom: "1.25rem" }}>
-                <span className="badge badge-neutral">VLSI & Microchips</span>
-                <span className="badge badge-neutral">Wireless Comm</span>
-              </div>
-            </div>
-            <div style={{ borderTop: "1px solid var(--border-light)", paddingTop: "1rem" }}>
-              <Link href="/login" style={{ fontSize: "0.875rem", fontWeight: 700, color: "var(--primary)", display: "inline-flex", alignItems: "center", gap: "0.375rem" }}>
-                Explore Curriculum <ExternalLink size={14} />
-              </Link>
-            </div>
-          </div>
-
-          {/* Card 3 */}
-          <div className="card" style={{ display: "flex", flexDirection: "column", justifyContent: "space-between" }}>
-            <div>
-              <div style={{ width: 46, height: 46, borderRadius: "var(--radius-md)", backgroundColor: "#ecfdf5", color: "#059669", display: "flex", alignItems: "center", justifyContent: "center", marginBottom: "1.25rem" }}>
-                <Building2 size={24} />
-              </div>
-              <h3 style={{ fontSize: "1.25rem", fontWeight: 800, color: "var(--text-primary)", marginBottom: "0.5rem" }}>
-                Information Technology
-              </h3>
-              <p style={{ fontSize: "0.875rem", color: "var(--text-secondary)", lineHeight: 1.6, marginBottom: "1.25rem" }}>
-                Specialized in Cloud Computing, Cybersecurity, Enterprise Management Systems, and Web Technologies.
-              </p>
-              <div style={{ display: "flex", gap: "0.5rem", flexWrap: "wrap", marginBottom: "1.25rem" }}>
-                <span className="badge badge-neutral">Cloud Architectures</span>
-                <span className="badge badge-neutral">Cyber Security</span>
-              </div>
-            </div>
-            <div style={{ borderTop: "1px solid var(--border-light)", paddingTop: "1rem" }}>
-              <Link href="/login" style={{ fontSize: "0.875rem", fontWeight: 700, color: "var(--primary)", display: "inline-flex", alignItems: "center", gap: "0.375rem" }}>
-                Explore Curriculum <ExternalLink size={14} />
-              </Link>
-            </div>
+          <div style={{ display: "grid", gridTemplateColumns: "repeat(auto-fit, minmax(260px, 1fr))", gap: "2rem" }}>
+            {pillars.map((item, idx) => {
+              const Icon = item.icon;
+              return (
+                <div
+                  key={idx}
+                  style={{
+                    backgroundColor: "#ffffff",
+                    padding: "2rem",
+                    borderRadius: "var(--radius-xl)",
+                    border: "1px solid #fde68a",
+                    boxShadow: "0 8px 24px rgba(74, 44, 17, 0.05)"
+                  }}
+                >
+                  <div
+                    style={{
+                      width: 48,
+                      height: 48,
+                      borderRadius: "50%",
+                      backgroundColor: "#fef3c7",
+                      color: "#d97706",
+                      display: "flex",
+                      alignItems: "center",
+                      justifyContent: "center",
+                      marginBottom: "1.25rem"
+                    }}
+                  >
+                    <Icon size={24} />
+                  </div>
+                  <h3 style={{ fontSize: "1.1rem", fontWeight: 800, color: "var(--text-primary)", fontFamily: "var(--font-display)" }}>
+                    {item.title}
+                  </h3>
+                  <p style={{ fontSize: "0.875rem", color: "var(--text-secondary)", marginTop: "0.5rem", lineHeight: 1.6 }}>
+                    {item.desc}
+                  </p>
+                </div>
+              );
+            })}
           </div>
         </div>
       </section>
 
-      {/* 6. Our Distinguished Faculty Section */}
-      <section id="faculty" style={{ maxWidth: 1240, width: "100%", margin: "0 auto 5rem", padding: "0 1.5rem" }}>
-        <div style={{ display: "flex", alignItems: "flex-end", justifyContent: "space-between", marginBottom: "2rem" }}>
+      {/* 5. School News & Notice Board */}
+      <section id="notices" style={{ padding: "5rem 1.5rem", maxWidth: 1240, margin: "0 auto", width: "100%" }}>
+        <div style={{ display: "flex", justifyContent: "space-between", alignItems: "flex-end", marginBottom: "2.5rem", flexWrap: "wrap", gap: "1rem" }}>
           <div>
-            <span className="category-pill" style={{ backgroundColor: "#ecfdf5", color: "#047857", marginBottom: "0.5rem" }}>
-              EXPERT EDUCATORS
+            <span style={{ color: "#d97706", fontWeight: 700, letterSpacing: "0.08em", fontSize: "0.8125rem", textTransform: "uppercase" }}>
+              School Updates & Notices
             </span>
-            <h2 style={{ fontSize: "2rem", fontWeight: 800, color: "var(--text-primary)", letterSpacing: "-0.02em" }}>
-              Our Distinguished Faculty
+            <h2 style={{ fontSize: "2rem", fontWeight: 800, fontFamily: "var(--font-display)", color: "var(--text-primary)", marginTop: "0.25rem" }}>
+              Recent News & Events 📢
             </h2>
-            <p style={{ fontSize: "0.9375rem", color: "var(--text-muted)", marginTop: "0.25rem" }}>
-              Meet our world-class professors and researchers dedicated to guiding the next generation of tech leaders.
-            </p>
           </div>
-          <Link href="/login" style={{ fontSize: "0.875rem", fontWeight: 700, color: "var(--primary)" }}>
-            View Full Directory →
+          <Link href="/login" className="btn btn-secondary btn-sm">
+            View Parent Portal Notices →
           </Link>
         </div>
 
-        <div style={{ display: "grid", gridTemplateColumns: "repeat(auto-fit, minmax(320px, 1fr))", gap: "1.75rem" }}>
-          {/* Faculty 1 */}
-          <div className="card" style={{ padding: 0, overflow: "hidden" }}>
-            <div style={{ position: "relative", width: "100%", height: 240 }}>
-              <Image
-                src="/images/faculty/dr_emily_okonkwo.jpg"
-                alt="Dr. Emily Okonkwo"
-                fill
-                style={{ objectFit: "cover" }}
-              />
-            </div>
-            <div style={{ padding: "1.5rem" }}>
-              <h3 style={{ fontSize: "1.25rem", fontWeight: 800, color: "var(--text-primary)" }}>
-                Dr. Emily Okonkwo
-              </h3>
-              <div style={{ fontSize: "0.8125rem", fontWeight: 700, color: "var(--primary)", marginTop: "0.125rem", marginBottom: "0.75rem" }}>
-                Lead Dean & Professor / Dept. Chair
-              </div>
-              <p style={{ fontSize: "0.875rem", color: "var(--text-secondary)", lineHeight: 1.5, marginBottom: "1rem" }}>
-                Over 15 years of industry-leading experience in Computer Architecture and distributed systems.
-              </p>
-              <div style={{ display: "flex", alignItems: "center", gap: "0.375rem", fontSize: "0.8125rem", color: "var(--text-muted)" }}>
-                <Mail size={14} /> emily.okonkwo@college.com
-              </div>
-            </div>
-          </div>
-
-          {/* Faculty 2 */}
-          <div className="card" style={{ padding: 0, overflow: "hidden" }}>
-            <div style={{ position: "relative", width: "100%", height: 240 }}>
-              <Image
-                src="/images/faculty/dr_michael_torres.jpg"
-                alt="Dr. Michael Torres"
-                fill
-                style={{ objectFit: "cover" }}
-              />
-            </div>
-            <div style={{ padding: "1.5rem" }}>
-              <h3 style={{ fontSize: "1.25rem", fontWeight: 800, color: "var(--text-primary)" }}>
-                Dr. Michael Torres
-              </h3>
-              <div style={{ fontSize: "0.8125rem", fontWeight: 700, color: "var(--primary)", marginTop: "0.125rem", marginBottom: "0.75rem" }}>
-                Professor, Cyber Systems
-              </div>
-              <p style={{ fontSize: "0.875rem", color: "var(--text-secondary)", lineHeight: 1.5, marginBottom: "1rem" }}>
-                Prominent cybersecurity researcher, renowned for his malware research and critical net systems.
-              </p>
-              <div style={{ display: "flex", alignItems: "center", gap: "0.375rem", fontSize: "0.8125rem", color: "var(--text-muted)" }}>
-                <Mail size={14} /> michael.torres@college.com
-              </div>
-            </div>
-          </div>
-
-          {/* Faculty 3 */}
-          <div className="card" style={{ padding: 0, overflow: "hidden" }}>
-            <div style={{ position: "relative", width: "100%", height: 240 }}>
-              <Image
-                src="/images/faculty/dr_sarah_smith.jpg"
-                alt="Dr. Sarah Smith"
-                fill
-                style={{ objectFit: "cover" }}
-              />
-            </div>
-            <div style={{ padding: "1.5rem" }}>
-              <h3 style={{ fontSize: "1.25rem", fontWeight: 800, color: "var(--text-primary)" }}>
-                Dr. Sarah Smith
-              </h3>
-              <div style={{ fontSize: "0.8125rem", fontWeight: 700, color: "var(--primary)", marginTop: "0.125rem", marginBottom: "0.75rem" }}>
-                Associate Professor, Web Tech
-              </div>
-              <p style={{ fontSize: "0.875rem", color: "var(--text-secondary)", lineHeight: 1.5, marginBottom: "1rem" }}>
-                Specialist in cloud technologies, modern SaaS architectures, and full-stack platforms for complex student systems.
-              </p>
-              <div style={{ display: "flex", alignItems: "center", gap: "0.375rem", fontSize: "0.8125rem", color: "var(--text-muted)" }}>
-                <Mail size={14} /> sarah.smith@college.com
-              </div>
-            </div>
-          </div>
-        </div>
-      </section>
-
-      {/* 7. A Complete Portal Solution Section */}
-      <section id="academics" style={{ maxWidth: 1240, width: "100%", margin: "0 auto 5rem", padding: "0 1.5rem" }}>
-        <div
-          style={{
-            background: "linear-gradient(135deg, #0b132b 0%, #1c2541 100%)",
-            borderRadius: "var(--radius-xl)",
-            padding: "4rem 2.5rem",
-            color: "#ffffff",
-            boxShadow: "0 25px 50px -12px rgba(11, 19, 43, 0.4)",
-            border: "1px solid rgba(255, 255, 255, 0.1)"
-          }}
-        >
-          <div style={{ textAlign: "center", maxWidth: 640, margin: "0 auto 3.5rem" }}>
-            <span
-              style={{
-                display: "inline-block",
-                padding: "0.3125rem 0.875rem",
-                borderRadius: "9999px",
-                backgroundColor: "rgba(99, 102, 241, 0.2)",
-                color: "#a5b4fc",
-                fontSize: "0.75rem",
-                fontWeight: 700,
-                letterSpacing: "0.08em",
-                textTransform: "uppercase",
-                marginBottom: "0.75rem"
-              }}
-            >
-              BUILT FOR EXCELLENCE
-            </span>
-            <h2 style={{ fontSize: "2.25rem", fontWeight: 800, color: "#ffffff", letterSpacing: "-0.02em" }}>
-              A Complete Portal Solution
-            </h2>
-            <p style={{ fontSize: "1rem", color: "#94a3b8", marginTop: "0.5rem" }}>
-              Secure and reliable workflows for university administrators, students, and educators.
-            </p>
-          </div>
-
-          <div style={{ display: "grid", gridTemplateColumns: "repeat(auto-fit, minmax(280px, 1fr))", gap: "2rem" }}>
-            {/* Feature 1 */}
-            <div style={{ display: "flex", flexDirection: "column", gap: "1rem" }}>
-              <div style={{ width: 48, height: 48, borderRadius: "var(--radius-md)", backgroundColor: "rgba(37, 99, 235, 0.2)", color: "#60a5fa", display: "flex", alignItems: "center", justifyContent: "center" }}>
-                <CreditCard size={24} />
-              </div>
-              <h3 style={{ fontSize: "1.25rem", fontWeight: 700, color: "#ffffff" }}>
-                Fee Management
-              </h3>
-              <p style={{ fontSize: "0.875rem", color: "#94a3b8", lineHeight: 1.6 }}>
-                Streamlined accounting, tracking of outstanding tuition fees, semester bills, and online receipts.
-              </p>
-            </div>
-
-            {/* Feature 2 */}
-            <div style={{ display: "flex", flexDirection: "column", gap: "1rem" }}>
-              <div style={{ width: 48, height: 48, borderRadius: "var(--radius-md)", backgroundColor: "rgba(99, 102, 241, 0.2)", color: "#818cf8", display: "flex", alignItems: "center", justifyContent: "center" }}>
-                <Award size={24} />
-              </div>
-              <h3 style={{ fontSize: "1.25rem", fontWeight: 700, color: "#ffffff" }}>
-                Grade & Credit Records
-              </h3>
-              <p style={{ fontSize: "0.875rem", color: "#94a3b8", lineHeight: 1.6 }}>
-                Official transcripts, semester grades, aggregate GPA projections, and digital transcript generation.
-              </p>
-            </div>
-
-            {/* Feature 3 */}
-            <div style={{ display: "flex", flexDirection: "column", gap: "1rem" }}>
-              <div style={{ width: 48, height: 48, borderRadius: "var(--radius-md)", backgroundColor: "rgba(5, 150, 105, 0.2)", color: "#34d399", display: "flex", alignItems: "center", justifyContent: "center" }}>
-                <Lock size={24} />
-              </div>
-              <h3 style={{ fontSize: "1.25rem", fontWeight: 700, color: "#ffffff" }}>
-                Admin Governance
-              </h3>
-              <p style={{ fontSize: "0.875rem", color: "#94a3b8", lineHeight: 1.6 }}>
-                Fine-grained access control, role-based access logging, campus department coordination, and security audit records.
-              </p>
-            </div>
-          </div>
-        </div>
-      </section>
-
-      {/* 8. Footer Section */}
-      <footer style={{ backgroundColor: "#070a12", color: "#94a3b8", borderTop: "1px solid rgba(255, 255, 255, 0.08)", padding: "4rem 1.5rem 2rem" }}>
-        <div style={{ maxWidth: 1240, margin: "0 auto" }}>
-          <div style={{ display: "grid", gridTemplateColumns: "repeat(auto-fit, minmax(220px, 1fr))", gap: "3rem", marginBottom: "3rem" }}>
-            {/* Brand Col */}
-            <div>
-              <div style={{ display: "flex", alignItems: "center", gap: "0.75rem", marginBottom: "1rem" }}>
-                <div style={{ width: 36, height: 36, borderRadius: "var(--radius-md)", background: "linear-gradient(135deg, #4f46e5 0%, #4338ca 100%)", display: "flex", alignItems: "center", justifyContent: "center", color: "#ffffff" }}>
-                  <GraduationCap size={20} />
+        <div style={{ display: "grid", gridTemplateColumns: "repeat(auto-fit, minmax(300px, 1fr))", gap: "1.5rem" }}>
+          {announcementsList.map((ann) => (
+            <div key={ann.id} className="card" style={{ display: "flex", flexDirection: "column", justifyContent: "space-between", borderColor: "#fde68a" }}>
+              <div>
+                <div style={{ display: "flex", alignItems: "center", justifyContent: "space-between", marginBottom: "0.75rem" }}>
+                  <span className="badge badge-warning">
+                    {"category" in ann ? (ann as { category: string }).category : "NOTICE"}
+                  </span>
+                  <span style={{ fontSize: "0.75rem", color: "var(--text-muted)", display: "flex", alignItems: "center", gap: "0.25rem" }}>
+                    <Calendar size={13} /> {new Date(ann.createdAt).toLocaleDateString("en-US", { month: "short", day: "numeric" })}
+                  </span>
                 </div>
-                <span style={{ fontSize: "1.125rem", fontWeight: 800, color: "#ffffff" }}>Apex Institute</span>
+                <h3 style={{ fontSize: "1.1rem", fontWeight: 800, color: "var(--text-primary)", fontFamily: "var(--font-display)", marginBottom: "0.5rem" }}>
+                  {ann.title}
+                </h3>
+                <p style={{ fontSize: "0.875rem", color: "var(--text-secondary)", lineHeight: 1.5 }}>
+                  {ann.content}
+                </p>
               </div>
-              <p style={{ fontSize: "0.8125rem", lineHeight: 1.6, color: "#64748b" }}>
-                Dedicated to educational excellence in engineering and computing disciplines, empowering graduate leaders with industry-ready skills.
-              </p>
+              <div style={{ marginTop: "1.25rem", paddingTop: "0.75rem", borderTop: "1px solid var(--border-light)" }}>
+                <span style={{ fontSize: "0.8125rem", fontWeight: 700, color: "#d97706" }}>
+                  {"linkText" in ann ? (ann as { linkText: string }).linkText : "Read Full Notice →"}
+                </span>
+              </div>
             </div>
+          ))}
+        </div>
+      </section>
 
-            {/* Col 1 */}
-            <div>
-              <h4 style={{ fontSize: "0.75rem", fontWeight: 800, color: "#ffffff", textTransform: "uppercase", letterSpacing: "0.08em", marginBottom: "1.25rem" }}>
-                NAVIGATION
-              </h4>
-              <ul style={{ listStyle: "none", display: "flex", flexDirection: "column", gap: "0.75rem", fontSize: "0.875rem" }}>
-                <li><a href="#announcements" style={{ color: "#94a3b8" }}>Announcements</a></li>
-                <li><a href="#departments" style={{ color: "#94a3b8" }}>Departments</a></li>
-                <li><a href="#faculty" style={{ color: "#94a3b8" }}>Faculty Directory</a></li>
-              </ul>
-            </div>
+      {/* 6. Campus Tour & Inquiry Section */}
+      <section id="contact" style={{ backgroundColor: "#2c1808", color: "#ffffff", padding: "5rem 1.5rem" }}>
+        <div style={{ maxWidth: 1100, margin: "0 auto", display: "grid", gridTemplateColumns: "repeat(auto-fit, minmax(320px, 1fr))", gap: "3rem", alignItems: "center" }}>
+          <div>
+            <span style={{ color: "#fcd34d", fontWeight: 700, letterSpacing: "0.08em", fontSize: "0.8125rem", textTransform: "uppercase" }}>
+              Schedule A Campus Visit
+            </span>
+            <h2 style={{ fontSize: "2.4rem", fontWeight: 800, fontFamily: "var(--font-display)", marginTop: "0.375rem", lineHeight: 1.2 }}>
+              Come See the Joyful Learning in Person! 🎈
+            </h2>
+            <p style={{ color: "#f3e8df", fontSize: "1rem", marginTop: "1rem", lineHeight: 1.6 }}>
+              We invite parents to walk through our colorful play zones, meet our warm early childhood teachers, and experience our secure play infrastructure.
+            </p>
 
-            {/* Col 2 */}
-            <div>
-              <h4 style={{ fontSize: "0.75rem", fontWeight: 800, color: "#ffffff", textTransform: "uppercase", letterSpacing: "0.08em", marginBottom: "1.25rem" }}>
-                PORTALS
-              </h4>
-              <ul style={{ listStyle: "none", display: "flex", flexDirection: "column", gap: "0.75rem", fontSize: "0.875rem" }}>
-                <li><Link href="/login" style={{ color: "#94a3b8" }}>Admin Login</Link></li>
-                <li><a href="#academics" style={{ color: "#94a3b8" }}>Student Desk</a></li>
-                <li><a href="#academics" style={{ color: "#94a3b8" }}>Faculty Resource</a></li>
-              </ul>
-            </div>
+            <div style={{ marginTop: "2rem", display: "flex", flexDirection: "column", gap: "1rem" }}>
+              <div style={{ display: "flex", alignItems: "center", gap: "0.875rem" }}>
+                <div style={{ width: 40, height: 40, borderRadius: "50%", backgroundColor: "rgba(245, 158, 11, 0.2)", display: "flex", alignItems: "center", justifyContent: "center", color: "#fcd34d" }}>
+                  <MapPin size={20} />
+                </div>
+                <div>
+                  <div style={{ fontSize: "0.875rem", color: "#a38c7b" }}>Campus Location</div>
+                  <div style={{ fontSize: "0.9375rem", fontWeight: 700, color: "#ffffff" }}>124 Sunshine Lane, Playtown Center</div>
+                </div>
+              </div>
 
-            {/* Col 3 */}
-            <div>
-              <h4 style={{ fontSize: "0.75rem", fontWeight: 800, color: "#ffffff", textTransform: "uppercase", letterSpacing: "0.08em", marginBottom: "1.25rem" }}>
-                CONTACT
-              </h4>
-              <ul style={{ listStyle: "none", display: "flex", flexDirection: "column", gap: "0.75rem", fontSize: "0.8125rem", color: "#94a3b8" }}>
-                <li>Email: contact@apex.edu</li>
-                <li>Phone: +1 (800) 019-9020</li>
-                <li>Campus: Block A4, Academic Square</li>
-              </ul>
+              <div style={{ display: "flex", alignItems: "center", gap: "0.875rem" }}>
+                <div style={{ width: 40, height: 40, borderRadius: "50%", backgroundColor: "rgba(245, 158, 11, 0.2)", display: "flex", alignItems: "center", justifyContent: "center", color: "#fcd34d" }}>
+                  <Phone size={20} />
+                </div>
+                <div>
+                  <div style={{ fontSize: "0.875rem", color: "#a38c7b" }}>Admissions Helpline</div>
+                  <div style={{ fontSize: "0.9375rem", fontWeight: 700, color: "#ffffff" }}>+1 (800) 555-KIDS / +1 (800) 555-5437</div>
+                </div>
+              </div>
+
+              <div style={{ display: "flex", alignItems: "center", gap: "0.875rem" }}>
+                <div style={{ width: 40, height: 40, borderRadius: "50%", backgroundColor: "rgba(245, 158, 11, 0.2)", display: "flex", alignItems: "center", justifyContent: "center", color: "#fcd34d" }}>
+                  <Clock size={20} />
+                </div>
+                <div>
+                  <div style={{ fontSize: "0.875rem", color: "#a38c7b" }}>School Hours</div>
+                  <div style={{ fontSize: "0.9375rem", fontWeight: 700, color: "#ffffff" }}>Mon – Fri: 8:00 AM – 6:30 PM</div>
+                </div>
+              </div>
             </div>
           </div>
 
-          <div style={{ borderTop: "1px solid rgba(255, 255, 255, 0.08)", paddingTop: "1.75rem", display: "flex", flexWrap: "wrap", alignItems: "center", justifyContent: "space-between", gap: "1rem", fontSize: "0.8125rem", color: "#64748b" }}>
-            <div>© {new Date().getFullYear()} Apex Institute of Technology. All rights reserved.</div>
-            <div style={{ display: "flex", gap: "1.5rem" }}>
-              <a href="#" style={{ color: "#64748b" }}>Privacy Policy</a>
-              <a href="#" style={{ color: "#64748b" }}>Terms of Service</a>
+          {/* Quick Inquiry Card */}
+          <div style={{ backgroundColor: "#ffffff", color: "var(--text-primary)", padding: "2.25rem", borderRadius: "var(--radius-xl)", boxShadow: "0 20px 40px rgba(0,0,0,0.3)" }}>
+            <h3 style={{ fontSize: "1.35rem", fontWeight: 800, fontFamily: "var(--font-display)" }}>
+              Request Tour & Callback 📞
+            </h3>
+            <p style={{ fontSize: "0.84rem", color: "var(--text-secondary)", marginBottom: "1.25rem" }}>
+              Fill in your details and our admission counselor will call you within 2 hours.
+            </p>
+
+            <form action="/#contact" style={{ display: "flex", flexDirection: "column", gap: "1rem" }}>
+              <div>
+                <label className="form-label">Parent&apos;s Full Name</label>
+                <input type="text" className="input-control" placeholder="e.g. Eleanor Vance" required />
+              </div>
+              <div>
+                <label className="form-label">Phone Number</label>
+                <input type="tel" className="input-control" placeholder="+1 (555) 000-0000" required />
+              </div>
+              <div>
+                <label className="form-label">Child&apos;s Age / Interested Program</label>
+                <select className="input-control">
+                  <option>Playgroup (1.5 - 2.5 yrs)</option>
+                  <option>Nursery (2.5 - 3.5 yrs)</option>
+                  <option>Junior KG (3.5 - 4.5 yrs)</option>
+                  <option>Senior KG (4.5 - 5.5 yrs)</option>
+                  <option>Day Care & After School</option>
+                </select>
+              </div>
+              <button type="submit" className="btn btn-amber" style={{ width: "100%", marginTop: "0.5rem" }}>
+                Submit Tour Inquiry ✨
+              </button>
+            </form>
+          </div>
+        </div>
+      </section>
+
+      {/* 7. Footer */}
+      <footer style={{ backgroundColor: "#1d0e04", color: "#a38c7b", padding: "3rem 1.5rem 2rem", borderTop: "1px solid rgba(255,255,255,0.08)" }}>
+        <div style={{ maxWidth: 1240, margin: "0 auto", display: "flex", justifyContent: "space-between", alignItems: "center", flexWrap: "wrap", gap: "1.5rem" }}>
+          <div style={{ display: "flex", alignItems: "center", gap: "0.75rem" }}>
+            <div style={{ width: 36, height: 36, borderRadius: "50%", backgroundColor: "#f59e0b", display: "flex", alignItems: "center", justifyContent: "center", color: "#ffffff" }}>
+              <Smile size={20} />
             </div>
+            <div>
+              <span style={{ fontSize: "1.1rem", fontWeight: 800, color: "#ffffff", fontFamily: "var(--font-display)" }}>
+                Chocolate Kids Play School
+              </span>
+              <span style={{ fontSize: "0.75rem", color: "#a38c7b", display: "block" }}>
+                © 2026 Chocolate Kids Inc. All rights reserved.
+              </span>
+            </div>
+          </div>
+
+          <div style={{ display: "flex", gap: "1.5rem", fontSize: "0.875rem" }}>
+            <Link href="/login" style={{ color: "#fcd34d", fontWeight: 600 }}>
+              Staff & Admin Portal
+            </Link>
+            <a href="#programs" style={{ color: "#a38c7b" }}>Programs</a>
+            <a href="#pillars" style={{ color: "#a38c7b" }}>Safety & CCTV</a>
+            <a href="#notices" style={{ color: "#a38c7b" }}>Notices</a>
           </div>
         </div>
       </footer>

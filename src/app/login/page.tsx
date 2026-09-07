@@ -2,7 +2,7 @@
 
 import { useState, type FormEvent } from "react";
 import { useRouter } from "next/navigation";
-import { GraduationCap, Mail, Lock, LogIn, AlertCircle, ArrowLeft } from "lucide-react";
+import { Smile, Mail, Lock, LogIn, AlertCircle, ArrowLeft, Sparkles } from "lucide-react";
 import Link from "next/link";
 
 export default function LoginPage() {
@@ -47,7 +47,7 @@ export default function LoginPage() {
         display: "flex",
         alignItems: "center",
         justifyContent: "center",
-        background: "linear-gradient(135deg, #0f172a 0%, #1e1b4b 100%)",
+        background: "radial-gradient(circle at top left, #3d2310 0%, #211005 100%)",
         padding: "1.5rem",
         position: "relative"
       }}
@@ -58,16 +58,16 @@ export default function LoginPage() {
           position: "absolute",
           top: "1.5rem",
           left: "1.5rem",
-          color: "#94a3b8",
+          color: "#fcd34d",
           display: "flex",
           alignItems: "center",
           gap: "0.5rem",
           fontSize: "0.875rem",
-          fontWeight: 600,
+          fontWeight: 700,
           textDecoration: "none"
         }}
       >
-        <ArrowLeft size={18} /> Back to Public Home
+        <ArrowLeft size={18} /> Back to Chocolate Kids Home
       </Link>
 
       <div
@@ -77,8 +77,8 @@ export default function LoginPage() {
           background: "rgba(255, 255, 255, 0.98)",
           backdropFilter: "blur(16px)",
           borderRadius: "var(--radius-xl)",
-          boxShadow: "0 25px 50px -12px rgba(0, 0, 0, 0.35)",
-          border: "1px solid rgba(255, 255, 255, 0.2)",
+          boxShadow: "0 25px 50px -12px rgba(0, 0, 0, 0.4)",
+          border: "2px solid #fde68a",
           overflow: "hidden"
         }}
       >
@@ -86,25 +86,25 @@ export default function LoginPage() {
         <div style={{ padding: "2.5rem 2.5rem 1.5rem", textAlign: "center" }}>
           <div
             style={{
-              width: 56,
-              height: 56,
+              width: 64,
+              height: 64,
               margin: "0 auto 1.25rem",
-              borderRadius: "var(--radius-lg)",
-              background: "linear-gradient(135deg, #4f46e5 0%, #4338ca 100%)",
+              borderRadius: "50%",
+              background: "linear-gradient(135deg, #f59e0b 0%, #d97706 100%)",
               display: "flex",
               alignItems: "center",
               justifyContent: "center",
               color: "#ffffff",
-              boxShadow: "0 8px 16px rgba(79, 70, 229, 0.35)"
+              boxShadow: "0 8px 20px rgba(245, 158, 11, 0.4)"
             }}
           >
-            <GraduationCap size={32} />
+            <Smile size={36} />
           </div>
-          <h1 style={{ fontSize: "1.5rem", fontWeight: 800, color: "var(--text-primary)", letterSpacing: "-0.01em" }}>
-            Admin Portal Login
+          <h1 style={{ fontSize: "1.6rem", fontWeight: 800, color: "var(--text-primary)", fontFamily: "var(--font-display)", letterSpacing: "-0.01em" }}>
+            Chocolate Kids Login
           </h1>
           <p style={{ fontSize: "0.875rem", color: "var(--text-secondary)", marginTop: "0.25rem" }}>
-            Sign in to access the College Management System
+            Parent & Administrator Management Portal
           </p>
         </div>
 

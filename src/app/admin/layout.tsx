@@ -27,21 +27,22 @@ export default async function AdminLayout({ children }: { children: ReactNode })
             zIndex: 10
           }}
         >
-          <div style={{ fontSize: "0.875rem", color: "var(--text-secondary)", fontWeight: 500 }}>
-            College Administration Control Center
+          <div style={{ fontSize: "0.9375rem", color: "var(--text-primary)", fontWeight: 700, fontFamily: "var(--font-display)", display: "flex", alignItems: "center", gap: "0.5rem" }}>
+            <span>🧸 Chocolate Kids Administration Portal</span>
           </div>
           <div style={{ display: "flex", alignItems: "center", gap: "1rem" }}>
             <span
               style={{
                 fontSize: "0.75rem",
-                fontWeight: 600,
-                color: "var(--primary)",
-                backgroundColor: "var(--primary-light)",
-                padding: "0.25rem 0.75rem",
-                borderRadius: "9999px"
+                fontWeight: 700,
+                color: "#d97706",
+                backgroundColor: "#fef3c7",
+                padding: "0.3rem 0.85rem",
+                borderRadius: "9999px",
+                border: "1px solid #fde68a"
               }}
             >
-              Academic Session 2025-26
+              ✨ Play Session 2025-26
             </span>
           </div>
         </header>

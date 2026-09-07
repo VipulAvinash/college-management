@@ -135,19 +135,19 @@ export function AnnouncementManager() {
 
   const columns: Column<Announcement>[] = [
     {
-      header: "Announcement Title & Content",
+      header: "Notice Title & Details",
       render: (a) => (
         <div style={{ display: "flex", alignItems: "flex-start", gap: "0.75rem" }}>
-          <div style={{ width: 36, height: 36, borderRadius: "var(--radius-md)", backgroundColor: "#eef2ff", color: "#4f46e5", display: "flex", alignItems: "center", justifyContent: "center", flexShrink: 0 }}>
+          <div style={{ width: 38, height: 38, borderRadius: "50%", backgroundColor: "#fffbeb", color: "#d97706", display: "flex", alignItems: "center", justifyContent: "center", flexShrink: 0, border: "1px solid #fde68a" }}>
             <Megaphone size={18} />
           </div>
           <div>
-            <div style={{ fontWeight: 700, color: "var(--text-primary)" }}>{a.title}</div>
+            <div style={{ fontWeight: 800, fontFamily: "var(--font-display)", color: "var(--text-primary)" }}>{a.title}</div>
             <div style={{ fontSize: "0.8125rem", color: "var(--text-secondary)", marginTop: "0.25rem", lineHeight: 1.4 }}>
               {a.content}
             </div>
             <div style={{ fontSize: "0.75rem", color: "var(--text-muted)", marginTop: "0.375rem" }}>
-              Created: {new Date(a.createdAt).toLocaleDateString()}
+              Posted: {new Date(a.createdAt).toLocaleDateString()}
             </div>
           </div>
         </div>
@@ -168,14 +168,14 @@ export function AnnouncementManager() {
           <button
             onClick={() => togglePublish(a)}
             className="btn btn-secondary btn-sm"
-            title={a.published ? "Unpublish" : "Publish"}
+            title={a.published ? "Hide Notice" : "Publish Notice"}
           >
             {a.published ? <EyeOff size={14} /> : <Eye size={14} />}
           </button>
-          <button onClick={() => openEditModal(a)} className="btn btn-secondary btn-sm">
+          <button onClick={() => openEditModal(a)} className="btn btn-secondary btn-sm" title="Edit Notice">
             <Edit2 size={14} />
           </button>
-          <button onClick={() => setDeletingId(a.id)} className="btn btn-danger btn-sm">
+          <button onClick={() => setDeletingId(a.id)} className="btn btn-danger btn-sm" title="Delete Notice">
             <Trash2 size={14} />
           </button>
         </div>
@@ -187,11 +187,15 @@ export function AnnouncementManager() {
     <div>
       <div style={{ display: "flex", alignItems: "center", justifyContent: "space-between", marginBottom: "1.5rem" }}>
         <div>
-          <h1 style={{ fontSize: "1.5rem", fontWeight: 800, color: "var(--text-primary)" }}>Campus Announcements</h1>
-          <p style={{ fontSize: "0.875rem", color: "var(--text-secondary)" }}>Publish news, notices, and deadlines to the public landing page</p>
+          <h1 style={{ fontSize: "1.5rem", fontWeight: 800, fontFamily: "var(--font-display)", color: "var(--text-primary)" }}>
+            School News & Event Updates 📢
+          </h1>
+          <p style={{ fontSize: "0.875rem", color: "var(--text-secondary)" }}>
+            Publish news, carnival notices, and holiday updates to the parent homepage.
+          </p>
         </div>
-        <button onClick={openCreateModal} className="btn btn-primary">
-          <Plus size={18} /> New Announcement
+        <button onClick={openCreateModal} className="btn btn-amber">
+          <Plus size={18} /> New School Notice
         </button>
       </div>
 

@@ -194,43 +194,43 @@ export function StudentsManager() {
 
   const columns: Column<Student>[] = [
     {
-      header: "Student Info",
+      header: "Toddler / Child Info",
       render: (s) => (
         <div>
           <div style={{ fontWeight: 700, color: "var(--text-primary)" }}>
             {s.firstName} {s.lastName}
           </div>
           <div style={{ fontSize: "0.75rem", color: "var(--text-muted)", display: "flex", alignItems: "center", gap: "0.375rem" }}>
-            <span style={{ fontFamily: "monospace", background: "#f1f5f9", padding: "0.125rem 0.375rem", borderRadius: 4 }}>
-              {s.studentId}
+            <span style={{ fontFamily: "monospace", background: "#fef3c7", color: "#d97706", padding: "0.125rem 0.375rem", borderRadius: 4, fontWeight: 700 }}>
+              ID: {s.studentId}
             </span>
           </div>
         </div>
       )
     },
     {
-      header: "Contact",
+      header: "Parent Contact",
       render: (s) => (
         <div style={{ fontSize: "0.8125rem", color: "var(--text-secondary)" }}>
           <div style={{ display: "flex", alignItems: "center", gap: "0.375rem" }}>
             <Mail size={13} color="var(--text-muted)" /> {s.email}
           </div>
           <div style={{ display: "flex", alignItems: "center", gap: "0.375rem", marginTop: "0.125rem" }}>
-            <Phone size={13} color="var(--text-muted)" /> {s.phone}
+            <Phone size={13} color="var(--text-muted)" /> Emergency: {s.phone}
           </div>
         </div>
       )
     },
     {
-      header: "Academic Details",
+      header: "Play Program & Module",
       render: (s) => {
         const dep = departments.find((d) => d.id === s.departmentId);
         const crs = courses.find((c) => c.id === s.courseId);
         return (
           <div style={{ fontSize: "0.8125rem" }}>
-            <div style={{ fontWeight: 600 }}>{dep ? dep.code : "N/A"} - {crs ? crs.name : "N/A"}</div>
-            <div style={{ fontSize: "0.75rem", color: "var(--text-muted)" }}>
-              Year {s.year} • Sem {s.semester}
+            <div style={{ fontWeight: 700, color: "#d97706" }}>{dep ? dep.name : "N/A"}</div>
+            <div style={{ fontSize: "0.75rem", color: "var(--text-secondary)" }}>
+              {crs ? crs.name : "N/A"}
             </div>
           </div>
         );
@@ -250,14 +250,14 @@ export function StudentsManager() {
           <button
             onClick={() => openEditModal(s)}
             className="btn btn-secondary btn-sm"
-            title="Edit Student"
+            title="Edit Toddler Info"
           >
             <Edit2 size={14} />
           </button>
           <button
             onClick={() => setDeletingStudentId(s.id)}
             className="btn btn-danger btn-sm"
-            title="Delete Student"
+            title="Remove Record"
           >
             <Trash2 size={14} />
           </button>
@@ -273,8 +273,12 @@ export function StudentsManager() {
       {/* Top Header */}
       <div style={{ display: "flex", alignItems: "center", justifyContent: "space-between", marginBottom: "1.5rem" }}>
         <div>
-          <h1 style={{ fontSize: "1.5rem", fontWeight: 800, color: "var(--text-primary)" }}>Student Directory</h1>
-          <p style={{ fontSize: "0.875rem", color: "var(--text-secondary)" }}>Manage enrolled student profiles, academic status, and contact records</p>
+          <h1 style={{ fontSize: "1.5rem", fontWeight: 800, fontFamily: "var(--font-display)", color: "var(--text-primary)" }}>
+            Kids & Toddlers Directory 🧸
+          </h1>
+          <p style={{ fontSize: "0.875rem", color: "var(--text-secondary)" }}>
+            Manage enrolled children, parent contacts, program age batches, and emergency information.
+          </p>
         </div>
       </div>
 
@@ -282,10 +286,10 @@ export function StudentsManager() {
       <SearchFilterBar
         searchQuery={search}
         onSearchChange={(val) => { setSearch(val); setPage(1); }}
-        placeholder="Search by ID, name, email or phone..."
+        placeholder="Search by kid name, admission ID, or parent email..."
         actionButton={
-          <button onClick={openCreateModal} className="btn btn-primary">
-            <Plus size={18} /> Add Student
+          <button onClick={openCreateModal} className="btn btn-amber">
+            <Plus size={18} /> Enroll New Toddler
           </button>
         }
       >
@@ -295,7 +299,7 @@ export function StudentsManager() {
           value={departmentId}
           onChange={(e) => { setDepartmentId(e.target.value); setPage(1); }}
         >
-          <option value="">All Departments</option>
+          <option value="">All Play Programs</option>
           {departments.map((d) => (
             <option key={d.id} value={d.id}>{d.name} ({d.code})</option>
           ))}

@@ -3,4 +3,5 @@ const nextConfig = {
   reactStrictMode: true,
   experimental: { serverActions: { allowedOrigins: ["*"] } }
 };
-module.exports = nextConfig;
+module.exports = nextConfig; // Dev server refreshed
+

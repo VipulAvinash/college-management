@@ -3,21 +3,39 @@ import { dashboardService } from "@/services/dashboard.service";
 import { StatCard } from "@/components/ui/StatCard";
 import { Badge } from "@/components/ui/Badge";
 import {
-  Users,
-  GraduationCap,
-  Building2,
-  BookOpen,
-  DollarSign,
+  Baby,
+  HeartHandshake,
+  Sparkles,
+  Palette,
   UserPlus,
   Receipt,
-  Megaphone,
   ArrowRight,
-  CheckCircle2,
-  Clock
+  Smile,
+  ShieldCheck
 } from "lucide-react";
 
+const defaultStats = {
+  students: { total: 0, active: 0 },
+  faculty: { total: 0, active: 0 },
+  departments: { total: 0 },
+  courses: { total: 0 },
+  fees: {
+    total: 0,
+    paid: 0,
+    pending: 0,
+    pendingCount: 0,
+    overdueCount: 0,
+    paidCount: 0
+  },
+  recent: {
+    students: [],
+    payments: [],
+    announcements: []
+  }
+};
+
 export default async function AdminDashboardPage() {
-  const stats = await dashboardService.getStats();
+  const stats = await dashboardService.getStats().catch(() => defaultStats);
 
   const totalFeeBilled = stats.fees.total || 1;
   const paidPercentage = Math.round((stats.fees.paid / totalFeeBilled) * 100);
@@ -27,19 +45,19 @@ export default async function AdminDashboardPage() {
       {/* Page Header */}
       <div style={{ display: "flex", flexWrap: "wrap", alignItems: "center", justifyContent: "space-between", gap: "1rem" }}>
         <div>
-          <h1 style={{ fontSize: "1.75rem", fontWeight: 800, color: "var(--text-primary)", letterSpacing: "-0.02em" }}>
-            Admin Control Dashboard
+          <h1 style={{ fontSize: "1.75rem", fontWeight: 800, color: "var(--text-primary)", fontFamily: "var(--font-display)", letterSpacing: "-0.01em" }}>
+            Chocolate Kids Control Dashboard 🎈
           </h1>
           <p style={{ fontSize: "0.875rem", color: "var(--text-secondary)" }}>
-            Real-time operational summary of students, faculty, academic fees, and department metrics.
+            Real-time overview of enrolled toddlers, caregivers, play programs, and tuition fee collection.
           </p>
         </div>
         <div style={{ display: "flex", gap: "0.75rem" }}>
-          <Link href="/admin/students" className="btn btn-primary btn-sm">
-            <UserPlus size={16} /> New Student
+          <Link href="/admin/students" className="btn btn-amber btn-sm">
+            <UserPlus size={16} /> Enroll New Toddler
           </Link>
           <Link href="/admin/payments" className="btn btn-secondary btn-sm">
-            <Receipt size={16} /> Record Payment
+            <Receipt size={16} /> Record Fee Payment
           </Link>
         </div>
       </div>
@@ -47,52 +65,52 @@ export default async function AdminDashboardPage() {
       {/* Top Metric Cards Grid */}
       <div style={{ display: "grid", gridTemplateColumns: "repeat(auto-fit, minmax(240px, 1fr))", gap: "1.25rem" }}>
         <StatCard
-          title="Total Students"
+          title="Enrolled Toddlers"
           value={stats.students.total}
           subtitle={`${stats.students.active} Currently Active`}
-          icon={<Users size={22} />}
-          iconBgColor="#eef2ff"
-          iconColor="#4f46e5"
+          icon={<Baby size={22} />}
+          iconBgColor="#fff0f3"
+          iconColor="#ff6b81"
         />
         <StatCard
-          title="Faculty Members"
+          title="Caregivers & Teachers"
           value={stats.faculty.total}
           subtitle={`${stats.faculty.active} Active Teaching Staff`}
-          icon={<GraduationCap size={22} />}
+          icon={<HeartHandshake size={22} />}
           iconBgColor="#ecfdf5"
-          iconColor="#059669"
+          iconColor="#10b981"
         />
         <StatCard
-          title="Departments"
+          title="Play Programs"
           value={stats.departments.total}
-          subtitle="Academic Branches"
-          icon={<Building2 size={22} />}
-          iconBgColor="#eff6ff"
-          iconColor="#2563eb"
+          subtitle="Age Group Batches"
+          icon={<Sparkles size={22} />}
+          iconBgColor="#fffbeb"
+          iconColor="#f59e0b"
         />
         <StatCard
-          title="Courses Offered"
+          title="Activity Modules"
           value={stats.courses.total}
-          subtitle="Degree Programs"
-          icon={<BookOpen size={22} />}
-          iconBgColor="#fffbeb"
-          iconColor="#d97706"
+          subtitle="Co-curricular Subjects"
+          icon={<Palette size={22} />}
+          iconBgColor="#f0f9ff"
+          iconColor="#0ea5e9"
         />
       </div>
 
       {/* Financial Overview Card */}
-      <div className="card" style={{ background: "linear-gradient(135deg, #ffffff 0%, #f8fafc 100%)" }}>
+      <div className="card" style={{ background: "linear-gradient(135deg, #ffffff 0%, #fffdfa 100%)", borderColor: "#fde68a" }}>
         <div style={{ display: "flex", flexWrap: "wrap", alignItems: "center", justifyContent: "space-between", gap: "1rem", marginBottom: "1.25rem" }}>
           <div>
-            <span style={{ fontSize: "0.8125rem", fontWeight: 700, color: "var(--primary)", textTransform: "uppercase", letterSpacing: "0.05em" }}>
-              Financial Summary
+            <span style={{ fontSize: "0.8125rem", fontWeight: 700, color: "#d97706", textTransform: "uppercase", letterSpacing: "0.05em" }}>
+              Fee Collection Status
             </span>
-            <h2 style={{ fontSize: "1.25rem", fontWeight: 800, color: "var(--text-primary)" }}>
-              Academic Fee Collection Status
+            <h2 style={{ fontSize: "1.25rem", fontWeight: 800, color: "var(--text-primary)", fontFamily: "var(--font-display)" }}>
+              Tuition & Daycare Billing Overview
             </h2>
           </div>
           <Link href="/admin/fees" className="btn btn-secondary btn-sm">
-            View Fee Records <ArrowRight size={14} />
+            View All Fee Plans <ArrowRight size={14} />
           </Link>
         </div>
 
@@ -102,12 +120,12 @@ export default async function AdminDashboardPage() {
             <span>Collection Rate ({paidPercentage}%)</span>
             <span>₹{stats.fees.paid.toLocaleString()} of ₹{stats.fees.total.toLocaleString()}</span>
           </div>
-          <div style={{ height: 10, width: "100%", backgroundColor: "#e2e8f0", borderRadius: 9999, overflow: "hidden" }}>
+          <div style={{ height: 12, width: "100%", backgroundColor: "#fef3c7", borderRadius: 9999, overflow: "hidden" }}>
             <div
               style={{
                 height: "100%",
                 width: `${Math.min(paidPercentage, 100)}%`,
-                background: "linear-gradient(90deg, #10b981 0%, #059669 100%)",
+                background: "linear-gradient(90deg, #f59e0b 0%, #d97706 100%)",
                 borderRadius: 9999,
                 transition: "width 0.6s ease"
               }}
@@ -129,7 +147,7 @@ export default async function AdminDashboardPage() {
               ₹{stats.fees.paid.toLocaleString()}
             </div>
             <div style={{ fontSize: "0.75rem", color: "#059669", marginTop: "0.25rem" }}>
-              {stats.fees.paidCount} Records Cleared
+              {stats.fees.paidCount} Receipts Cleared
             </div>
           </div>
           <div style={{ padding: "1rem", backgroundColor: "#fffbeb", borderRadius: "var(--radius-md)", border: "1px solid #fde68a" }}>
@@ -149,15 +167,15 @@ export default async function AdminDashboardPage() {
         {/* Recent Students */}
         <div className="card">
           <div style={{ display: "flex", alignItems: "center", justifyContent: "space-between", marginBottom: "1rem" }}>
-            <h3 style={{ fontSize: "1.0625rem", fontWeight: 700, color: "var(--text-primary)" }}>
-              Recent Student Enrolments
+            <h3 style={{ fontSize: "1.0625rem", fontWeight: 800, fontFamily: "var(--font-display)", color: "var(--text-primary)" }}>
+              Recent Toddler Admissions 🧸
             </h3>
-            <Link href="/admin/students" style={{ fontSize: "0.8125rem", fontWeight: 600, color: "var(--primary)" }}>
-              View All →
+            <Link href="/admin/students" style={{ fontSize: "0.8125rem", fontWeight: 700, color: "#d97706" }}>
+              View All Kids →
             </Link>
           </div>
           {stats.recent.students.length === 0 ? (
-            <p style={{ fontSize: "0.875rem", color: "var(--text-muted)" }}>No recent students</p>
+            <p style={{ fontSize: "0.875rem", color: "var(--text-muted)" }}>No recent admissions recorded</p>
           ) : (
             <div style={{ display: "flex", flexDirection: "column", gap: "0.75rem" }}>
               {stats.recent.students.map((s) => (
@@ -167,10 +185,10 @@ export default async function AdminDashboardPage() {
                     display: "flex",
                     alignItems: "center",
                     justifyContent: "space-between",
-                    padding: "0.75rem",
-                    backgroundColor: "#f8fafc",
+                    padding: "0.75rem 1rem",
+                    backgroundColor: "#fffdfa",
                     borderRadius: "var(--radius-md)",
-                    border: "1px solid var(--border-light)"
+                    border: "1px solid #fde68a"
                   }}
                 >
                   <div>
@@ -178,7 +196,7 @@ export default async function AdminDashboardPage() {
                       {s.firstName} {s.lastName}
                     </div>
                     <div style={{ fontSize: "0.75rem", color: "var(--text-muted)" }}>
-                      {s.studentId} • {s.email}
+                      Admission ID: {s.studentId} • Parent: {s.email}
                     </div>
                   </div>
                   <Badge variant={s.status === "ACTIVE" ? "success" : "neutral"}>
@@ -193,15 +211,15 @@ export default async function AdminDashboardPage() {
         {/* Recent Payments */}
         <div className="card">
           <div style={{ display: "flex", alignItems: "center", justifyContent: "space-between", marginBottom: "1rem" }}>
-            <h3 style={{ fontSize: "1.0625rem", fontWeight: 700, color: "var(--text-primary)" }}>
-              Recent Fee Payments
+            <h3 style={{ fontSize: "1.0625rem", fontWeight: 800, fontFamily: "var(--font-display)", color: "var(--text-primary)" }}>
+              Recent Fee Receipts 💳
             </h3>
-            <Link href="/admin/payments" style={{ fontSize: "0.8125rem", fontWeight: 600, color: "var(--primary)" }}>
-              View All →
+            <Link href="/admin/payments" style={{ fontSize: "0.8125rem", fontWeight: 700, color: "#d97706" }}>
+              View Receipts →
             </Link>
           </div>
           {stats.recent.payments.length === 0 ? (
-            <p style={{ fontSize: "0.875rem", color: "var(--text-muted)" }}>No recent payments</p>
+            <p style={{ fontSize: "0.875rem", color: "var(--text-muted)" }}>No payment receipts logged yet</p>
           ) : (
             <div style={{ display: "flex", flexDirection: "column", gap: "0.75rem" }}>
               {stats.recent.payments.map((p) => (
@@ -211,10 +229,10 @@ export default async function AdminDashboardPage() {
                     display: "flex",
                     alignItems: "center",
                     justifyContent: "space-between",
-                    padding: "0.75rem",
-                    backgroundColor: "#f8fafc",
+                    padding: "0.75rem 1rem",
+                    backgroundColor: "#fffdfa",
                     borderRadius: "var(--radius-md)",
-                    border: "1px solid var(--border-light)"
+                    border: "1px solid #fde68a"
                   }}
                 >
                   <div>
@@ -222,7 +240,7 @@ export default async function AdminDashboardPage() {
                       ₹{Number(p.amount).toLocaleString()}
                     </div>
                     <div style={{ fontSize: "0.75rem", color: "var(--text-muted)" }}>
-                      Method: {p.paymentMethod} • Ref: {p.transactionReference || "N/A"}
+                      Mode: {p.paymentMethod} • Ref: {p.transactionReference || "N/A"}
                     </div>
                   </div>
                   <span style={{ fontSize: "0.75rem", color: "var(--text-muted)", fontWeight: 500 }}>

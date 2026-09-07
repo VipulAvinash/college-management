@@ -4,15 +4,16 @@ import Link from "next/link";
 import { usePathname, useRouter } from "next/navigation";
 import {
   LayoutDashboard,
-  Users,
-  GraduationCap,
-  Building2,
-  BookOpen,
+  Baby,
+  HeartHandshake,
+  Sparkles,
+  Palette,
   CreditCard,
   Receipt,
   Megaphone,
   LogOut,
-  ShieldCheck
+  ShieldCheck,
+  Smile
 } from "lucide-react";
 import type { PublicUser } from "@/db/schema";
 
@@ -22,13 +23,13 @@ interface AdminSidebarProps {
 
 const navItems = [
   { label: "Dashboard", href: "/admin", icon: LayoutDashboard },
-  { label: "Students", href: "/admin/students", icon: Users },
-  { label: "Faculty", href: "/admin/faculty", icon: GraduationCap },
-  { label: "Departments", href: "/admin/departments", icon: Building2 },
-  { label: "Courses", href: "/admin/courses", icon: BookOpen },
-  { label: "Fees", href: "/admin/fees", icon: CreditCard },
-  { label: "Payments", href: "/admin/payments", icon: Receipt },
-  { label: "Announcements", href: "/admin/announcements", icon: Megaphone }
+  { label: "Kids & Toddlers", href: "/admin/students", icon: Baby },
+  { label: "Educators & Staff", href: "/admin/faculty", icon: HeartHandshake },
+  { label: "Play Programs", href: "/admin/departments", icon: Sparkles },
+  { label: "Activity Modules", href: "/admin/courses", icon: Palette },
+  { label: "Tuition & Fees", href: "/admin/fees", icon: CreditCard },
+  { label: "Fee Receipts", href: "/admin/payments", icon: Receipt },
+  { label: "School Notices", href: "/admin/announcements", icon: Megaphone }
 ];
 
 export function AdminSidebar({ admin }: AdminSidebarProps) {
@@ -72,23 +73,24 @@ export function AdminSidebar({ admin }: AdminSidebarProps) {
       >
         <div
           style={{
-            width: 38,
-            height: 38,
+            width: 42,
+            height: 42,
             borderRadius: "var(--radius-md)",
-            background: "linear-gradient(135deg, #6366f1 0%, #4f46e5 100%)",
+            background: "linear-gradient(135deg, #f59e0b 0%, #d97706 100%)",
             display: "flex",
             alignItems: "center",
             justifyContent: "center",
-            boxShadow: "0 4px 12px rgba(99, 102, 241, 0.4)"
+            boxShadow: "0 4px 12px rgba(245, 158, 11, 0.4)",
+            flexShrink: 0
           }}
         >
-          <GraduationCap size={22} color="#ffffff" />
+          <Smile size={24} color="#ffffff" />
         </div>
         <div>
-          <h1 style={{ fontSize: "1rem", fontWeight: 800, color: "#ffffff", letterSpacing: "-0.01em" }}>
-            CMS Portal
+          <h1 style={{ fontSize: "1.05rem", fontWeight: 800, color: "#ffffff", letterSpacing: "-0.01em", fontFamily: "var(--font-display)" }}>
+            Chocolate Kids
           </h1>
-          <p style={{ fontSize: "0.75rem", color: "#94a3b8" }}>College Admin</p>
+          <p style={{ fontSize: "0.75rem", color: "#fcd34d", fontWeight: 600 }}>Play School Admin</p>
         </div>
       </div>
 

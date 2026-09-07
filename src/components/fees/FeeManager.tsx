@@ -103,24 +103,24 @@ export function FeeManager() {
 
   const columns: Column<Fee>[] = [
     {
-      header: "Student Name",
+      header: "Toddler / Child Name",
       render: (f) => {
         const s = students.find((st) => st.id === f.studentId);
         return (
           <div>
             <div style={{ fontWeight: 700, color: "var(--text-primary)" }}>
-              {s ? `${s.firstName} ${s.lastName}` : "Student Record"}
+              {s ? `${s.firstName} ${s.lastName}` : "Toddler Record"}
             </div>
             <div style={{ fontSize: "0.75rem", color: "var(--text-muted)" }}>
-              {s?.studentId || f.studentId}
+              Admission ID: {s?.studentId || f.studentId}
             </div>
           </div>
         );
       }
     },
     {
-      header: "Academic Year",
-      render: (f) => <span style={{ fontWeight: 600, fontSize: "0.8125rem" }}>{f.academicYear}</span>
+      header: "Play Session",
+      render: (f) => <span style={{ fontWeight: 600, fontSize: "0.8125rem", color: "#d97706" }}>{f.academicYear}</span>
     },
     {
       header: "Total Billed",
@@ -129,7 +129,7 @@ export function FeeManager() {
     {
       header: "Paid Amount",
       render: (f) => (
-        <span style={{ fontWeight: 600, color: "var(--success-text)" }}>
+        <span style={{ fontWeight: 600, color: "#059669" }}>
           ₹{Number(f.paidAmount).toLocaleString()}
         </span>
       )
@@ -137,7 +137,7 @@ export function FeeManager() {
     {
       header: "Pending Balance",
       render: (f) => (
-        <span style={{ fontWeight: 700, color: Number(f.pendingAmount) > 0 ? "var(--warning-text)" : "var(--text-muted)" }}>
+        <span style={{ fontWeight: 700, color: Number(f.pendingAmount) > 0 ? "#b45309" : "var(--text-muted)" }}>
           ₹{Number(f.pendingAmount).toLocaleString()}
         </span>
       )
@@ -163,11 +163,15 @@ export function FeeManager() {
     <div>
       <div style={{ display: "flex", alignItems: "center", justifyContent: "space-between", marginBottom: "1.5rem" }}>
         <div>
-          <h1 style={{ fontSize: "1.5rem", fontWeight: 800, color: "var(--text-primary)" }}>Fee Management</h1>
-          <p style={{ fontSize: "0.875rem", color: "var(--text-secondary)" }}>Track student fee structures, due dates, and pending balances</p>
+          <h1 style={{ fontSize: "1.5rem", fontWeight: 800, fontFamily: "var(--font-display)", color: "var(--text-primary)" }}>
+            Tuition & Daycare Fees 💳
+          </h1>
+          <p style={{ fontSize: "0.875rem", color: "var(--text-secondary)" }}>
+            Track toddler tuition plans, daycare billing cycles, and fee statuses.
+          </p>
         </div>
-        <button onClick={openCreateModal} className="btn btn-primary">
-          <Plus size={18} /> Create Fee Structure
+        <button onClick={openCreateModal} className="btn btn-amber">
+          <Plus size={18} /> Create Fee Plan
         </button>
       </div>
 

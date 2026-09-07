@@ -42,6 +42,6 @@ export const announcementService = {
 
   /** For the public website - published only. */
   async listPublished(limit = 10) {
-    return announcementRepository.findRecent(limit);
+    return announcementRepository.findRecent(limit).catch(() => []);
   }
 };
